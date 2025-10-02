@@ -1,5 +1,1 @@
-print ("Hola mundo")
-print ("xd lol skibidi")
-print(" xd skibidi 2")
-print(" xd skibidi 3 conflicto linea 4")
-print ("pipo")
+print ("Skibidi")
