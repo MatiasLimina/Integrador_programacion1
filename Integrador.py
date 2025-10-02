@@ -1,1 +1,2 @@
 print ("Skibidi")
+print("Pajero")
