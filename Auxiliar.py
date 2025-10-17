@@ -1,3 +1,1 @@
-print ("Skibidi")
-print("Pajero")
-print("Desde branch_lauti")
+# Agregar al informe import csv, agregar import so
