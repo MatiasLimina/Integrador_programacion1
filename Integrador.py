@@ -1,15 +1,20 @@
 import csv
 import os
+
+
 def leer_archivo():
-    with open(RUTA_ARCHIVO,"r",encoding="UTF-8") as archivo:
-        lector = csv.DictReader(archivo)
-        paises = []
-        for linea in lector:
-            try:
-                paises.append(linea)
-            except:
-                pass
-        return paises
+    try:
+        with open(RUTA_ARCHIVO,"r",encoding="UTF-8") as archivo:
+            lector = csv.DictReader(archivo)
+            paises = []
+            for linea in lector:
+                try:
+                    paises.append(linea)
+                except :
+                    pass
+            return paises
+    except FileNotFoundError:
+        return None
 
 def main():
     salir = True
