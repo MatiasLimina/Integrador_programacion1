@@ -1,5 +1,15 @@
 import csv
 import os
+def leer_archivo():
+    with open(RUTA_ARCHIVO,"r",encoding="UTF-8") as archivo:
+        lector = csv.DictReader(archivo)
+        paises = []
+        for linea in lector:
+            try:
+                paises.append(linea)
+            except:
+                pass
+        return paises
 
 def main():
     salir = True
@@ -19,4 +29,6 @@ def main():
                 print("Gracias por utilizar nuestro servicio!")
                 salir = False
 
-main()
+RUTA_ARCHIVO = "Programacion 1/Integrador_programacion1/Paises.csv"
+paises = leer_archivo()
+#main()
