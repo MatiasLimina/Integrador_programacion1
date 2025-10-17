@@ -53,4 +53,4 @@ lista_paises,lista_poblacion,lista_superficie,lista_continente = crear_listas_co
 
 #main()
 if __name__ == "__main__":
-    principal() # Ejecuta el programa principal
+    main() # Ejecuta el programa principal
