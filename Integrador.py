@@ -50,12 +50,5 @@ def main():
 RUTA_ARCHIVO = "Programacion 1/Integrador_programacion1/Paises.csv"
 paises = leer_archivo()
 lista_paises,lista_poblacion,lista_superficie,lista_continente = crear_listas_columnas(paises)
-print (lista_paises)
-print("------------")
-print(lista_poblacion)
-print("------------")
-print(lista_superficie)
-print("------------")
-print(lista_continente)
 
 #main()
