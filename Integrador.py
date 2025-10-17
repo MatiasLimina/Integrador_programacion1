@@ -1,7 +1,6 @@
 import csv
 import os
-
-
+#Funciones manejo de csv
 def leer_archivo():
     try:
         with open(RUTA_ARCHIVO,"r",encoding="UTF-8") as archivo:
@@ -15,6 +14,12 @@ def leer_archivo():
             return paises
     except FileNotFoundError:
         return None
+
+def crear_lista_paises(dic_paises):
+    lista_paises = []
+    for d in dic_paises:
+        lista_paises.append(d.get("nombre"))
+    return lista_paises
 
 def main():
     salir = True
@@ -36,4 +41,6 @@ def main():
 
 RUTA_ARCHIVO = "Programacion 1/Integrador_programacion1/Paises.csv"
 paises = leer_archivo()
+lista_paises = crear_lista_paises(paises)
+print (lista_paises)
 #main()
