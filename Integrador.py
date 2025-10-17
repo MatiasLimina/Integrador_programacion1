@@ -35,13 +35,15 @@ def main():
         opc = input("\n Eliga una opción... ")
         
         match opc:
-            case "1":
+            case "1":#Buscar pais por nombre
                 continue
-            case "2":
+            case "2":#Filtrar paises
                 continue
-            case "3":
+            case "3":#Ordenar paises
                 continue
-            case "4":
+            case "4":#mostrar estadisticas
+                continue
+            case "5":
                 print("Gracias por utilizar nuestro servicio!")
                 salir = False
 
