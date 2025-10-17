@@ -15,11 +15,17 @@ def leer_archivo():
     except FileNotFoundError:
         return None
 
-def crear_lista_paises(dic_paises):
+def crear_listas_columnas(dic_paises): #Crea listas con los datos en cada columna
     lista_paises = []
+    lista_poblacion=[]
+    lista_superficie = []
+    lista_continente = []
     for d in dic_paises:
         lista_paises.append(d.get("nombre"))
-    return lista_paises
+        lista_poblacion.append(d.get("poblacion"))
+        lista_superficie.append(d.get("superficie"))
+        lista_continente.append(d.get("continente"))
+    return lista_paises,lista_poblacion,lista_superficie,lista_continente
 
 def main():
     salir = True
@@ -41,6 +47,13 @@ def main():
 
 RUTA_ARCHIVO = "Programacion 1/Integrador_programacion1/Paises.csv"
 paises = leer_archivo()
-lista_paises = crear_lista_paises(paises)
+lista_paises,lista_poblacion,lista_superficie,lista_continente = crear_listas_columnas(paises)
 print (lista_paises)
+print("------------")
+print(lista_poblacion)
+print("------------")
+print(lista_superficie)
+print("------------")
+print(lista_continente)
+
 #main()
