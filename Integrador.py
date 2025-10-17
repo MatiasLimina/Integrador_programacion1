@@ -52,3 +52,5 @@ paises = leer_archivo()
 lista_paises,lista_poblacion,lista_superficie,lista_continente = crear_listas_columnas(paises)
 
 #main()
+if __name__ == "__main__":
+    principal() # Ejecuta el programa principal
