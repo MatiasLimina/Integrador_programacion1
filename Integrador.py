@@ -68,13 +68,21 @@ def id_busqueda (max): #Validacion del ID
         
             print("Error: Por favor, ingrese un número válido.")
 
+#Funciones ordenar paises
+def sub_menu_ordenar_paises():
+    print("=====================")
+    print("Como desea prdenar los paises?")
+    print("1) Nombre \n2)Población \n3)Superficie\n")
+    opc = input("Elija una opción").capitalize().strip()
+
+
 #MAIN
 def main():
     salir = True
     while salir:
         print("--- MENU ---")
         print(" 1) Busqueda por nombre\n 2) Filtrar países\n 3) Ordenar países\n 4) Mostrar estadísticas\n 5) Salir")
-        opc = input("\n Eliga una opción... ")
+        opc = input("\n Elija una opción... ")
         
         match opc:
             case "1":#Buscar pais por nombre (coincidencia parcial o exacta).
@@ -87,11 +95,10 @@ def main():
                 else:
                     pais_buscado = elegir_nombre(busqueda_posibles,paises)
                     print (pais_buscado)
-                    
             case "2":#Filtrar paises
                 continue
             case "3": #Ordenar paises
-                continue
+                sub_menu_ordenar_paises()
             case "4": #Mostrar estadisticas
                 continue
             case "5": #Salir
