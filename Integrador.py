@@ -100,8 +100,11 @@ def sub_menu_ordenar_paises(dic_paises):
     print("=====================")
     print("Como desea prdenar los paises?")
     print("1) Nombre \n2)Población \n3)Superficie\n")
-    opc = input("Elija una opción").capitalize().strip()
-    
+    opc = input("Elija una opción").strip()
+    while not opc.isnumeric():
+        print("Opcion inválida")
+        print("1) Nombre \n2)Población \n3)Superficie\n")
+        opc = input("Elija una opción").capitalize().strip()
     match opc:
         case "1":#Ordenar por nombre
             orden_por_nombre = ordenar_por_nombre(dic_paises)
@@ -115,7 +118,9 @@ def sub_menu_ordenar_paises(dic_paises):
             mostrar_lista_paises(orden_por_poblacion)
         case "3":#Ordenar por superficie(Acendente y Descendente)
             opc = input ("1) Orden Ascendente \n 2) Orden Descendente \n")
-
+            while not opc.isnumeric():
+                print("Opcion inválida")
+                opc = input ("1) Orden Ascendente \n 2) Orden Descendente \n")
             if opc == "1":
                 orden_superficie_ascendente = ordenar_por_superficie_ascendente(dic_paises)
                 print("Paises ordenados de manera ascendente segun su población")
@@ -147,8 +152,11 @@ def main():
     while salir:
         print("--- MENU ---")
         print(" 1) Busqueda por nombre\n 2) Filtrar países\n 3) Ordenar países\n 4) Mostrar estadísticas\n 5) Salir")
-        opc = input("\n Elija una opción... ")
-        
+        opc = input("\n Elija una opción... ").strip()
+        while not opc.isnumeric:
+            print("Opcion inválida")
+            print(" 1) Busqueda por nombre\n 2) Filtrar países\n 3) Ordenar países\n 4) Mostrar estadísticas\n 5) Salir")
+            opc = input("Elija una opción... ").strip()
         match opc:
             case "1":#Buscar pais por nombre (coincidencia parcial o exacta).
                 nombre = input("Ingrese un nombre ").capitalize().strip()
