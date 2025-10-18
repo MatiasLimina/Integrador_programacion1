@@ -27,11 +27,17 @@ def crear_listas_columnas(dic_paises): #Crea listas con los datos en cada column
         lista_continente.append(d.get("continente"))
     return lista_paises,lista_poblacion,lista_superficie,lista_continente
 
+def mostrar_linea(diccionario,linea):
+    for pais in diccionario:
+        if pais.get("nombre", "") == linea:
+            return f"Pais: {pais["nombre"]} Población: {pais["poblacion"]} Superficie: {pais["superficie"]} Continente: {pais["continente"]}"
 #Funciones buscar por nombre
-def busqueda_nombre_parcial(nombre,diccionario):
+def busqueda_nombre_parcial(nombre,diccionario): #Realiza la busqueda de coincidencias
     encontrado = False
     coincidencias = []
     for pais in diccionario:
+        if pais.get("nombre", "") == nombre: #Si la busqueda es exacta
+            return nombre
         if nombre in pais.get("nombre", "") :
             encontrado = True
             coincidencias.append(pais["nombre"])
@@ -40,30 +46,28 @@ def busqueda_nombre_parcial(nombre,diccionario):
     else:
         return coincidencias
 
-def elegir_nombre(coincidencias,diccionario):
+def elegir_nombre(coincidencias,diccionario): #Muestra coincidencias al usuario
     print("Esta es la lista de paises que coinciden con su busqueda")
     for i in range(len(coincidencias)):
         print(f"ID: {i} Pais: {coincidencias[i]}")
     eleccion_id = id_busqueda(len(coincidencias)-1)
     pais_buscado = coincidencias[eleccion_id]
-    for pais in diccionario:
-        if pais.get("nombre", "") == pais_buscado:
-            return f"Pais: {pais["nombre"]} Población: {pais["poblacion"]} Superficie: {pais["superficie"]} Continente: {pais["continente"]}"
+    return mostrar_linea(diccionario,pais_buscado)
+    # for pais in diccionario:
+    #     if pais.get("nombre", "") == pais_buscado:
+    #         return f"Pais: {pais["nombre"]} Población: {pais["poblacion"]} Superficie: {pais["superficie"]} Continente: {pais["continente"]}"
     
-def id_busqueda (max):
-    """Pide al usuario un ID, valida que sea un número y esté en el rango correcto."""
-    while True: # Bucle infinito que se romperá con un 'return'
+def id_busqueda (max): #Validacion del ID
+    while True: 
         identificador_str = input(f"Ingrese el ID del país que desea (0 - {max}): ")
         try:
-            # 1. Intentamos convertir la entrada a un número entero
             identificador_int = int(identificador_str)
-            # 2. Verificamos si el número está en el rango válido
             if 0 <= identificador_int <= max:
-                return identificador_int # Si todo está bien, devolvemos el número y salimos del bucle
+                return identificador_int
             else:
                 print(f"Error: El número debe estar entre 0 y {max}.")
         except ValueError:
-            # 3. Si la conversión a 'int' falla, mostramos un error
+        
             print("Error: Por favor, ingrese un número válido.")
     
 def main():
@@ -79,6 +83,8 @@ def main():
                 busqueda_posibles = busqueda_nombre_parcial(nombre,paises)
                 if busqueda_posibles == "No encontrado":
                     print("No se encontraron coincidencias")
+                elif busqueda_posibles in lista_paises:
+                    print(mostrar_linea(paises,busqueda_posibles))
                 else:
                     pais_buscado = elegir_nombre(busqueda_posibles,paises)
                     print (pais_buscado)
