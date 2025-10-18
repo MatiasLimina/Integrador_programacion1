@@ -69,11 +69,26 @@ def id_busqueda (max): #Validacion del ID
             print("Error: Por favor, ingrese un número válido.")
 
 #Funciones ordenar paises
-def sub_menu_ordenar_paises():
+def sub_menu_ordenar_paises(dic_paises,lista_paises,lista_poblacion,lista_superficie,lista_continente):
     print("=====================")
     print("Como desea prdenar los paises?")
     print("1) Nombre \n2)Población \n3)Superficie\n")
     opc = input("Elija una opción").capitalize().strip()
+    
+    match opc:
+        case "1":#Ordenar por nombre
+            orden_por_nombre = ordenar_por_nombre(lista_paises)
+            print("Paises ordenados de forma alfabetica:")
+            print()
+            for i in range(len(orden_por_nombre)):
+                        print(mostrar_linea(dic_paises,orden_por_nombre[i]))
+        case "2":#Ordenar por poblacion
+            pass
+        case "3":#Ordenar por superficie(Acendente y Descendente)
+            pass
+
+def ordenar_por_nombre(lista_paises):
+    return sorted(lista_paises)
 
 
 #MAIN
@@ -98,17 +113,15 @@ def main():
             case "2":#Filtrar paises
                 continue
             case "3": #Ordenar paises
-                sub_menu_ordenar_paises()
+                sub_menu_ordenar_paises(paises,lista_paises,lista_poblacion,lista_superficie,lista_continente)
             case "4": #Mostrar estadisticas
                 continue
             case "5": #Salir
                 print("Gracias por utilizar nuestro servicio!")
                 salir = False
 
-# --- Construcción de la ruta de archivo de forma robusta ---
-# Obtenemos la ruta absoluta del directorio donde se encuentra este script.
+
 script_dir = os.path.dirname(os.path.abspath(__file__))
-# Unimos la ruta del script con el nombre del archivo CSV para obtener la ruta completa.
 RUTA_ARCHIVO = os.path.join(script_dir, "Paises.csv")
 
 paises = leer_archivo()
