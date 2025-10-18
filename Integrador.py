@@ -120,8 +120,13 @@ def sub_menu_ordenar_paises(dic_paises):
                 orden_superficie_ascendente = ordenar_por_superficie_ascendente(dic_paises)
                 print("Paises ordenados de manera ascendente segun su población")
                 print()
-                mostrar_lista_paises(ordenar_por_superficie_ascendente)
+                mostrar_lista_paises(orden_superficie_ascendente)
             elif opc == "2":
+                orden_superficie_descendente = ordenar_por_superficie_descendente(dic_paises)
+                print("Paises ordenados de manera descendente segun su población")
+                print()
+                mostrar_lista_paises(orden_superficie_descendente)
+
 
 def ordenar_por_nombre(lista_de_diccionarios):
     return sorted(lista_de_diccionarios, key=lambda pais: pais["nombre"])
