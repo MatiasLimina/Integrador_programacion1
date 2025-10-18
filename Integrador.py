@@ -39,6 +39,33 @@ def busqueda_nombre_parcial(nombre,diccionario):
         return "No encontrado"
     else:
         return coincidencias
+
+def elegir_nombre(coincidencias,diccionario):
+    print("Esta es la lista de paises que coinciden con su busqueda")
+    for i in range(len(coincidencias)):
+        print(f"ID: {i} Pais: {coincidencias[i]}")
+    eleccion_id = id_busqueda(len(coincidencias)-1)
+    pais_buscado = coincidencias[eleccion_id]
+    for pais in diccionario:
+        if pais.get("nombre", "") == pais_buscado:
+            return f"Pais: {pais["nombre"]} Población: {pais["poblacion"]} Superficie: {pais["superficie"]} Continente: {pais["continente"]}"
+    
+def id_busqueda (max):
+    """Pide al usuario un ID, valida que sea un número y esté en el rango correcto."""
+    while True: # Bucle infinito que se romperá con un 'return'
+        identificador_str = input(f"Ingrese el ID del país que desea (0 - {max}): ")
+        try:
+            # 1. Intentamos convertir la entrada a un número entero
+            identificador_int = int(identificador_str)
+            # 2. Verificamos si el número está en el rango válido
+            if 0 <= identificador_int <= max:
+                return identificador_int # Si todo está bien, devolvemos el número y salimos del bucle
+            else:
+                print(f"Error: El número debe estar entre 0 y {max}.")
+        except ValueError:
+            # 3. Si la conversión a 'int' falla, mostramos un error
+            print("Error: Por favor, ingrese un número válido.")
+    
 def main():
     salir = True
     while salir:
@@ -48,9 +75,14 @@ def main():
         
         match opc:
             case "1":#Buscar pais por nombre (coincidencia parcial o exacta).
-                nombre = input("Ingrese un nombre").capitalize().strip()
-                busqueda = busqueda_nombre_parcial(nombre,paises)
-                print(busqueda)
+                nombre = input("Ingrese un nombre ").capitalize().strip()
+                busqueda_posibles = busqueda_nombre_parcial(nombre,paises)
+                if busqueda_posibles == "No encontrado":
+                    print("No se encontraron coincidencias")
+                else:
+                    pais_buscado = elegir_nombre(busqueda_posibles,paises)
+                    print (pais_buscado)
+                    
             case "2":#Filtrar paises
                 continue
             case "3":#Ordenar paises
