@@ -28,14 +28,17 @@ def crear_listas_columnas(dic_paises): #Crea listas con los datos en cada column
     return lista_paises,lista_poblacion,lista_superficie,lista_continente
 
 #Funciones buscar por nombre
-def busqueda_nombre(nombre,diccionario):
+def busqueda_nombre_parcial(nombre,diccionario):
     encontrado = False
+    coincidencias = []
     for pais in diccionario:
-        if pais.get("nombre", "") == nombre:
+        if nombre in pais.get("nombre", "") :
             encontrado = True
-            return "Encontrado"
+            coincidencias.append(pais["nombre"])
     if encontrado == False:
         return "No encontrado"
+    else:
+        return coincidencias
 def main():
     salir = True
     while salir:
@@ -46,7 +49,7 @@ def main():
         match opc:
             case "1":#Buscar pais por nombre (coincidencia parcial o exacta).
                 nombre = input("Ingrese un nombre").capitalize().strip()
-                busqueda = busqueda_nombre(nombre,paises)
+                busqueda = busqueda_nombre_parcial(nombre,paises)
                 print(busqueda)
             case "2":#Filtrar paises
                 continue
