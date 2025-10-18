@@ -14,7 +14,7 @@ def leer_archivo():
             return paises
     except FileNotFoundError:
         return None
-
+#Prueba
 def crear_listas_columnas(dic_paises): #Crea listas con los datos en cada columna
     lista_paises = []
     lista_poblacion=[]
