@@ -98,7 +98,12 @@ def main():
                 print("Gracias por utilizar nuestro servicio!")
                 salir = False
 
-RUTA_ARCHIVO = "Programacion 1/Integrador_programacion1/Paises.csv"
+# --- Construcción de la ruta de archivo de forma robusta ---
+# Obtenemos la ruta absoluta del directorio donde se encuentra este script.
+script_dir = os.path.dirname(os.path.abspath(__file__))
+# Unimos la ruta del script con el nombre del archivo CSV para obtener la ruta completa.
+RUTA_ARCHIVO = os.path.join(script_dir, "Paises.csv")
+
 paises = leer_archivo()
 lista_paises,lista_poblacion,lista_superficie,lista_continente = crear_listas_columnas(paises)
 
