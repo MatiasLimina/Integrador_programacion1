@@ -31,19 +31,19 @@ def main():
     salir = True
     while salir:
         print("--- MENU ---")
-        print("1) Filtrar países\n 2) Ordenar países\n 3) Mostrar estadísticas\n 4) Salir")
+        print("1) Buscar país por nombre\n 2) Filtrar países\n 3) Ordenar países\n 4) Mostrar estadísticas\n 5) Salir")
         opc = input("\n Eliga una opción... ")
         
         match opc:
-            case "1":#Buscar pais por nombre
+            case "1": #Buscar pais por nombre
                 continue
-            case "2":#Filtrar paises
+            case "2": #Filtrar paises
                 continue
-            case "3":#Ordenar paises
+            case "3": #Ordenar paises
                 continue
-            case "4":#mostrar estadisticas
+            case "4": #Mostrar estadisticas
                 continue
-            case "5":
+            case "5": #Salir
                 print("Gracias por utilizar nuestro servicio!")
                 salir = False
 
