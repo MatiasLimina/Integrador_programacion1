@@ -31,12 +31,11 @@ def crear_listas_columnas(dic_paises): #Crea listas con los datos en cada column
         lista_continente.append(d.get("continente"))
     return lista_paises,lista_poblacion,lista_superficie,lista_continente
 
-def mostrar_lista_paises(lista_de_paises):
-    """Recorre una lista de diccionarios de países y los imprime de forma formateada."""
+def mostrar_lista_paises(lista_de_paises):#Pasas la lista de diccionarios e imprime cada linea formateada
     for pais in lista_de_paises:
         print(f"Pais: {pais['nombre']}, Población: {pais['poblacion']}, Superficie: {pais['superficie']}, Continente: {pais['continente']}")
 
-def validar_csv(linea):
+def validar_csv(linea): #Validacion de cada linea del csv antes de agregarlo a la lista de diccionarios
     pais = linea.get("nombre")
     poblacion = linea.get("poblacion") 
     superficie = linea.get("superficie")
@@ -59,6 +58,7 @@ def validar_csv(linea):
         return None
     linea_validada = {"nombre":pais,"poblacion":poblacion,"superficie":superficie,"continente":continente}
     return linea_validada
+
 #Funciones buscar por nombre
 def busqueda_nombre_parcial(termino_busqueda, diccionario): #Realiza la busqueda de coincidencias
     coincidencias = []
@@ -67,13 +67,12 @@ def busqueda_nombre_parcial(termino_busqueda, diccionario): #Realiza la busqueda
     # Caso de búsqueda exacta primero
     for pais in diccionario:
         if pais.get("nombre", "").lower() == termino_busqueda_lower:
-            return [pais] # Devuelve una lista con el único resultado exacto
+            return [pais]
 
     # Si no hay coincidencia exacta, busca coincidencias parciales
     for pais in diccionario:
         if termino_busqueda_lower in pais.get("nombre", "").lower():
             coincidencias.append(pais) # Agrega el diccionario completo
-            
     return coincidencias
 
 def elegir_nombre(coincidencias): #Muestra coincidencias al usuario
@@ -110,25 +109,32 @@ def sub_menu_ordenar_paises(dic_paises):
             print()
             mostrar_lista_paises(orden_por_nombre)
         case "2":#Ordenar por poblacion
-            # Ordenamos la lista completa de diccionarios usando la clave 'poblacion'
-            paises_ordenados_poblacion = ordenar_por_poblacion(dic_paises)
+            orden_por_poblacion = ordenar_por_poblacion(dic_paises)
             print("Paises ordenados segun su población")
             print()
-            # Pasamos la nueva lista de diccionarios ya ordenada para mostrarla
-            mostrar_lista_paises(paises_ordenados_poblacion)
-
+            mostrar_lista_paises(orden_por_poblacion)
         case "3":#Ordenar por superficie(Acendente y Descendente)
-            pass
+            opc = input ("1) Orden Ascendente \n 2) Orden Descendente \n")
+
+            if opc == "1":
+                orden_superficie_ascendente = ordenar_por_superficie_ascendente(dic_paises)
+                print("Paises ordenados de manera ascendente segun su población")
+                print()
+                mostrar_lista_paises(ordenar_por_superficie_ascendente)
+            elif opc == "2":
 
 def ordenar_por_nombre(lista_de_diccionarios):
     return sorted(lista_de_diccionarios, key=lambda pais: pais["nombre"])
 
 def ordenar_por_poblacion(lista_de_diccionarios):
-    """Ordena una lista de diccionarios de países por la clave 'poblacion' de forma ascendente."""
-    # La función lambda le dice a sorted() que use el valor de la clave 'poblacion' para ordenar
+    #Ordena una lista de diccionarios de países por la clave 'poblacion' de forma ascendente
     return sorted(lista_de_diccionarios, key=lambda pais: pais["poblacion"])
 
+def ordenar_por_superficie_ascendente(lista_de_diccionarios):
+    return sorted(lista_de_diccionarios, key=lambda pais: pais["superficie"])
 
+def ordenar_por_superficie_descendente(lista_de_diccionarios):
+    return sorted(lista_de_diccionarios, key=lambda pais: pais["superficie"],reverse=True)
 
 #MAIN
 def main():
@@ -148,13 +154,11 @@ def main():
                     mostrar_lista_paises(paises_encontrados)
                 else:
                     pais_elegido = elegir_nombre(paises_encontrados)
-                    mostrar_lista_paises([pais_elegido]) # La pasamos como lista para reutilizar la función
-
+                    mostrar_lista_paises([pais_elegido])
             case "2":#Filtrar paises
                 continue
             case "3": #Ordenar paises
                 sub_menu_ordenar_paises(paises)
-                    
             case "4": #Mostrar estadisticas
                 continue
             case "5": #Salir
