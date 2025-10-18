@@ -31,6 +31,7 @@ def mostrar_linea(diccionario,linea):
     for pais in diccionario:
         if pais.get("nombre", "") == linea:
             return f"Pais: {pais["nombre"]} Población: {pais["poblacion"]} Superficie: {pais["superficie"]} Continente: {pais["continente"]}"
+
 #Funciones buscar por nombre
 def busqueda_nombre_parcial(nombre,diccionario): #Realiza la busqueda de coincidencias
     encontrado = False
@@ -53,10 +54,7 @@ def elegir_nombre(coincidencias,diccionario): #Muestra coincidencias al usuario
     eleccion_id = id_busqueda(len(coincidencias)-1)
     pais_buscado = coincidencias[eleccion_id]
     return mostrar_linea(diccionario,pais_buscado)
-    # for pais in diccionario:
-    #     if pais.get("nombre", "") == pais_buscado:
-    #         return f"Pais: {pais["nombre"]} Población: {pais["poblacion"]} Superficie: {pais["superficie"]} Continente: {pais["continente"]}"
-    
+
 def id_busqueda (max): #Validacion del ID
     while True: 
         identificador_str = input(f"Ingrese el ID del país que desea (0 - {max}): ")
@@ -69,7 +67,8 @@ def id_busqueda (max): #Validacion del ID
         except ValueError:
         
             print("Error: Por favor, ingrese un número válido.")
-    
+
+#MAIN
 def main():
     salir = True
     while salir:
