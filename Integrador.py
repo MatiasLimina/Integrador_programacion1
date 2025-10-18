@@ -90,11 +90,11 @@ def main():
                     
             case "2":#Filtrar paises
                 continue
-            case "3":#Ordenar paises
+            case "3": #Ordenar paises
                 continue
-            case "4":#mostrar estadisticas
+            case "4": #Mostrar estadisticas
                 continue
-            case "5":
+            case "5": #Salir
                 print("Gracias por utilizar nuestro servicio!")
                 salir = False
 
