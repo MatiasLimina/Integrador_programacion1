@@ -14,7 +14,7 @@ def leer_archivo():
             return paises
     except FileNotFoundError:
         return None
-#Prueba
+
 def crear_listas_columnas(dic_paises): #Crea listas con los datos en cada columna
     lista_paises = []
     lista_poblacion=[]
@@ -27,16 +27,27 @@ def crear_listas_columnas(dic_paises): #Crea listas con los datos en cada column
         lista_continente.append(d.get("continente"))
     return lista_paises,lista_poblacion,lista_superficie,lista_continente
 
+#Funciones buscar por nombre
+def busqueda_nombre(nombre,diccionario):
+    encontrado = False
+    for pais in diccionario:
+        if pais.get("nombre", "") == nombre:
+            encontrado = True
+            return "Encontrado"
+    if encontrado == False:
+        return "No encontrado"
 def main():
     salir = True
     while salir:
         print("--- MENU ---")
-        print("1) Filtrar países\n 2) Ordenar países\n 3) Mostrar estadísticas\n 4) Salir")
+        print(" 1) Busqueda por nombre\n 2) Filtrar países\n 3) Ordenar países\n 4) Mostrar estadísticas\n 5) Salir")
         opc = input("\n Eliga una opción... ")
         
         match opc:
-            case "1":#Buscar pais por nombre
-                continue
+            case "1":#Buscar pais por nombre (coincidencia parcial o exacta).
+                nombre = input("Ingrese un nombre").capitalize().strip()
+                busqueda = busqueda_nombre(nombre,paises)
+                print(busqueda)
             case "2":#Filtrar paises
                 continue
             case "3":#Ordenar paises
