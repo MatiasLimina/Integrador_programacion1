@@ -24,12 +24,12 @@ def crear_listas_columnas(dic_paises): #Crea listas con los datos en cada column
     lista_poblacion=[]
     lista_superficie = []
     lista_continente = []
-    for d in dic_paises:
+    for d in dic_paises: #Extrae el valor de cada key y las añade a las listas correspondientes
         lista_paises.append(d.get("nombre"))
         lista_poblacion.append(d.get("poblacion"))
         lista_superficie.append(d.get("superficie"))
         lista_continente.append(d.get("continente"))
-    return lista_paises,lista_poblacion,lista_superficie,lista_continente
+    return lista_paises,lista_poblacion,lista_superficie,lista_continente #Devuelve las listas con los elementos correspondientes
 
 def mostrar_lista_paises(lista_de_paises):#Pasas la lista de diccionarios e imprime cada linea formateada
     for pais in lista_de_paises:
