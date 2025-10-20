@@ -82,17 +82,16 @@ def elegir_nombre(coincidencias): #Muestra coincidencias al usuario
     eleccion_id = id_busqueda(len(coincidencias)-1) #Da a elegir un país de la lista por ID
     return coincidencias[eleccion_id] # Devuelve el diccionario del país elegido
 
-def id_busqueda (max): #Validacion del ID
+def id_busqueda (max): #Valida el ID de los país
     while True: 
-        identificador_str = input(f"Ingrese el ID del país que desea (0 - {max}): ")
-        try:
+        identificador_str = input(f"Ingrese el ID del país que desea (0 - {max}): ") #Ingresa el ID en str
+        try: # Intenta pasar el ID de str a int y validar el ingreso
             identificador_int = int(identificador_str)
-            if 0 <= identificador_int <= max:
+            if 0 <= identificador_int <= max: #Valida que el ID esté dentro del rango
                 return identificador_int
             else:
                 print(f"Error: El número debe estar entre 0 y {max}.")
         except ValueError:
-        
             print("Error: Por favor, ingrese un número válido.")
 
 #Funciones filtrado
