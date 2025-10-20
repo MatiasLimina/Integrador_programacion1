@@ -1,5 +1,6 @@
 import csv
 import os
+#FUNCIONES
 #Funciones manejo de csv
 def leer_archivo(): #Lee el archivo y crea una lista con líneas válidas del csv
     try: #Intenta leer el csv y realizar el procedimiento
@@ -336,7 +337,7 @@ def main(): #Ejecuta el codigo principal
             print(" 1) Busqueda por nombre\n 2) Filtrar países\n 3) Ordenar países\n 4) Mostrar estadísticas\n 5) Salir")
             opc = input("Elija una opción... ").strip()
         match opc:
-            case "1": #Buscar pais por nombre (coincidencia parcial o exacta)
+            case "1": #Busca pais por nombre (coincidencia parcial o exacta)
                 nombre = input("Ingrese un nombre ").capitalize().strip()
                 paises_encontrados = busqueda_nombre_parcial(nombre,paises)
                 if not paises_encontrados: #Si la lista está vacía
@@ -346,25 +347,24 @@ def main(): #Ejecuta el codigo principal
                 else:
                     pais_elegido = elegir_nombre(paises_encontrados)
                     mostrar_lista_paises([pais_elegido])
-            case "2":#Filtrar paises
+            case "2": #Filtra países por continente, rango de población o rango de superficie
                 print("1) Filtrar por continente\n2) Filtrar por rango de población\n3) Filtrar por rango de superficie\n4) Salir")
-                opc_categoria = input("Ingrese el filtro que desea aplicar: ").strip() #Seleccionar Filtro
-                while not opc_categoria.isnumeric(): # Valida que la entrada sea numérica
-                    print("Opcion inválida")
+                opc_categoria = input("Ingrese el filtro que desea aplicar: ").strip()
+                while not opc_categoria.isnumeric(): #Valida que la entrada sea numérica
+                    print("Opción no disponible, ingrese un valor correcto: ")
                     print("1) Filtrar por continente\n2) Filtrar por rango de población\n3) Filtrar por rango de superficie\n4) Salir")
                     opc_categoria = input("Ingrese el filtro que desea aplicar: ").strip()
                 match opc_categoria: #Abre submenú con filtros aplicables
                     case "1": #Filtrar por continente
-                        filtrar_por_continente(paises) # Llama a la función que lista continentes y permite elegir por ID
+                        filtrar_por_continente(paises) #Filtra continentes y permite elegir por ID
                     case "2": #Filtrar por población
-                        filtrar_por_poblacion(paises) # Llama a la función que pide mínimo y máximo de población y muestra los resultados
+                        filtrar_por_poblacion(paises) #Pide mínimo y máximo de población y muestra los resultados
                     case "3": #Filtrar por continente
-                        filtrar_por_superficie(paises) # Llama a la función que pide mínimo y máximo de superficie y muestra los resultados
+                        filtrar_por_superficie(paises) #Pide mínimo y máximo de superficie y muestra los resultados
                     case "4": #Salir
                         print("Volver al menú principal.")
-                    case _: #Eror
                         print("Selecciones una opción válida.")
-            case "3": #Ordenar paises
+            case "3": #Ordenar países
                 sub_menu_ordenar_paises(paises)
             case "4": #Mostrar estadísticas
                 print("1) País con mayor y menor población")
@@ -374,8 +374,7 @@ def main(): #Ejecuta el codigo principal
                 print("5) Salir")
                 opc_est = input("Ingrese la opción deseada: ").strip()
 
-                # Validación esencial (misma lógica que el resto del código)
-                while not opc_est.isnumeric():
+                while not opc_est.isnumeric(): # Valida que la entrada sea numérica
                     print("Opción inválida. Debe ingresar un número.")
                     print("1) País con mayor y menor población")
                     print("2) Promedio de población")
@@ -398,16 +397,16 @@ def main(): #Ejecuta el codigo principal
                     case _:
                         print("Seleccione una opción válida.")
             case "5": #Salir
-                print("Gracias por utilizar nuestro servicio!")
+                print("¡Gracias por utilizar nuestro servicio!")
                 salir = True
 
-
-script_dir = os.path.dirname(os.path.abspath(__file__))
+#RUTA DEL CSV
+script_dir = os.path.dirname(os.path.abspath(__file__)) 
 RUTA_ARCHIVO = os.path.join(script_dir, "Paises.csv")
 
-paises = leer_archivo()
-lista_paises,lista_poblacion,lista_superficie,lista_continente = crear_listas_columnas(paises)
+paises = leer_archivo() #Guarda los países como lista
+lista_paises,lista_poblacion,lista_superficie,lista_continente = crear_listas_columnas(paises) #Crea lista con las keys de cada país
 
 #main()
-if __name__ == "__main__":
-    main() # Ejecuta el programa principal
+if __name__ == "__main__": # Ejecuta el programa principal
+    main()
