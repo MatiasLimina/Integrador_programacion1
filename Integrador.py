@@ -213,29 +213,29 @@ def filtrar_por_superficie(dic_paises): #Filtra paises por superficie
     else:
         print("No se encontraron países dentro de ese rango de superficie.")
 #Funciones ordenar paises
-def sub_menu_ordenar_paises(dic_paises):
+def sub_menu_ordenar_paises(dic_paises): #Muestra opciones y realiza el proceso de orden de paises
     print("=====================")
     print("Como desea prdenar los paises?")
     print("1) Nombre \n2)Población \n3)Superficie\n")
     opc = input("Elija una opción").strip()
-    while not opc.isnumeric():
-        print("Opcion inválida")
-        print("1) Nombre \n2)Población \n3)Superficie\n")
+    while not opc.isnumeric(): #Valida que la opción sea numérica
+        print("Opción inválida")
+        print("1)Nombre \n2)Población \n3)Superficie\n")
         opc = input("Elija una opción").capitalize().strip()
-    match opc:
+    match opc: #Da a elegir opciones
         case "1":#Ordenar por nombre
             orden_por_nombre = ordenar_por_nombre(dic_paises)
             print("Paises ordenados de forma alfabetica:")
             print()
             mostrar_lista_paises(orden_por_nombre)
-        case "2":#Ordenar por poblacion
+        case "2":#Ordenar por población
             orden_por_poblacion = ordenar_por_poblacion(dic_paises)
             print("Paises ordenados segun su población")
             print()
             mostrar_lista_paises(orden_por_poblacion)
-        case "3":#Ordenar por superficie(Acendente y Descendente)
+        case "3":#Ordenar por superficie (Ascendente y Descendente)
             opc = input ("1) Orden Ascendente \n 2) Orden Descendente \n")
-            while not opc.isnumeric():
+            while not opc.isnumeric(): #Valida que la opción sea numérica
                 print("Opcion inválida")
                 opc = input ("1) Orden Ascendente \n 2) Orden Descendente \n")
             if opc == "1":
