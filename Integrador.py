@@ -1,22 +1,22 @@
 import csv
 import os
 #Funciones manejo de csv
-def leer_archivo():
-    try:
-        with open(RUTA_ARCHIVO,"r",encoding="UTF-8") as archivo:
+def leer_archivo(): #Lee el archivo y crea una lista con líneas válidas del csv
+    try: #Intenta leer el csv y realizar el procedimiento
+        with open(RUTA_ARCHIVO,"r",encoding="UTF-8") as archivo: #Abre y cierra el csv
             lector = csv.DictReader(archivo)
             paises = []
-            for linea in lector:
+            for linea in lector: #Lee y valida cada línea del csv
                 linea_valida = validar_csv(linea)
                 if linea_valida == None:
                     pass
                 else:
-                    try:
+                    try: #Si la línea es válida la agrega a la lista
                         paises.append(linea_valida)
-                    except :
+                    except:
                         pass
             return paises
-    except FileNotFoundError:
+    except FileNotFoundError: #En caso de no encontrar csv
         return None
 
 def crear_listas_columnas(dic_paises): #Crea listas con los datos en cada columna
