@@ -4,6 +4,9 @@ import os
 #Falta chequear duplicados
 #Agregar editar pais y agregar pais
 #Busqueda parcial: falta que encuentr un pais cuando no pones el acento y pais mal escrito por ejemplo "irkn"
+#Mover funciones a archivos aparte
+#Cada opcion debe llamar una funcion
+#Si inicializa sin csv creado que lo cree con header correspondientes
 #Funciones manejo de csv
 def leer_archivo(): 
     try: 
@@ -34,7 +37,7 @@ def crear_listas_columnas(dic_paises): #Crea listas con los datos en cada column
 
 def mostrar_lista_paises(lista_de_paises): #Pasa la lista de diccionarios e imprime cada línea formateada
     for pais in lista_de_paises:
-        print(f"Pais: {pais['nombre']}, Población: {pais['poblacion']}, Superficie: {pais['superficie']}, Continente: {pais['continente']}")
+        print(f"Pais: {pais['nombre']}, Población: {pais['poblacion']}, Superficie: {pais['superficie']}km2, Continente: {pais['continente']}")
 
 def validar_csv(linea): #Valida cada línea del csv antes de agregarlo a la lista de diccionarios
     pais = linea.get("nombre")
@@ -53,7 +56,7 @@ def validar_csv(linea): #Valida cada línea del csv antes de agregarlo a la list
         print(f"ERROR: {poblacion} datos inválidos, el campo ¨poblacion¨ espera un entero")
         return None
     try: 
-        superficie = int(superficie)
+        superficie = float(superficie) #Rechequar esto
     except ValueError: 
         print(f"ERROR: {superficie} datos inválidos, el campo ¨superficie¨ espera un entero")
         return None
