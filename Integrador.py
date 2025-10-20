@@ -31,7 +31,7 @@ def crear_listas_columnas(dic_paises): #Crea listas con los datos en cada column
         lista_continente.append(d.get("continente"))
     return lista_paises,lista_poblacion,lista_superficie,lista_continente #Devuelve las listas con los elementos correspondientes
 
-def mostrar_lista_paises(lista_de_paises): #Pasa la lista de diccionarios e imprime cada linea formateada
+def mostrar_lista_paises(lista_de_paises): #Pasa la lista de diccionarios e imprime cada línea formateada
     for pais in lista_de_paises:
         print(f"Pais: {pais['nombre']}, Población: {pais['poblacion']}, Superficie: {pais['superficie']}, Continente: {pais['continente']}")
 
@@ -76,10 +76,10 @@ def busqueda_nombre_parcial(termino_busqueda, diccionario): #Realiza la busqueda
     return coincidencias
 
 def elegir_nombre(coincidencias): #Muestra coincidencias al usuario
-    print("Esta es la lista de paises que coinciden con su busqueda")
-    for i in range(len(coincidencias)):
+    print("Esta es la lista de paises que coinciden con su búsqueda: ")
+    for i in range(len(coincidencias)): #Muestra la lista de coincidencias
         print(f"ID: {i} Pais: {coincidencias[i]['nombre']}")
-    eleccion_id = id_busqueda(len(coincidencias)-1)
+    eleccion_id = id_busqueda(len(coincidencias)-1) #Da a elegir un país de la lista por ID
     return coincidencias[eleccion_id] # Devuelve el diccionario del país elegido
 
 def id_busqueda (max): #Validacion del ID
