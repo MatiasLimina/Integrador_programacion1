@@ -31,11 +31,11 @@ def crear_listas_columnas(dic_paises): #Crea listas con los datos en cada column
         lista_continente.append(d.get("continente"))
     return lista_paises,lista_poblacion,lista_superficie,lista_continente #Devuelve las listas con los elementos correspondientes
 
-def mostrar_lista_paises(lista_de_paises):#Pasas la lista de diccionarios e imprime cada linea formateada
+def mostrar_lista_paises(lista_de_paises): #Pasa la lista de diccionarios e imprime cada linea formateada
     for pais in lista_de_paises:
         print(f"Pais: {pais['nombre']}, Población: {pais['poblacion']}, Superficie: {pais['superficie']}, Continente: {pais['continente']}")
 
-def validar_csv(linea): #Validacion de cada linea del csv antes de agregarlo a la lista de diccionarios
+def validar_csv(linea): #Valida cada línea del csv antes de agregarlo a la lista de diccionarios
     pais = linea.get("nombre")
     poblacion = linea.get("poblacion") 
     superficie = linea.get("superficie")
