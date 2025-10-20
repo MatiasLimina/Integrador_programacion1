@@ -135,27 +135,24 @@ def filtrar_por_continente(dic_paises): #Filtra paises por continente
         print("No se encontraron países en este continente.")
 
 def filtrar_por_poblacion(dic_paises): #Filtra paises por población
-    # Solicita el valor mínimo con validaciones
-    while True:
+    while True: #Solicita el valor mínimo con validaciones
         minimo_str = input("Ingrese la población mínima: ").strip()
-        if minimo_str == "":
+        if minimo_str == "": #Valida que la entrada no esté vacía
             print("ERROR: No puede dejar la población mínima vacía.")
             continue
-        try:
+        try: #Intenta pasar la entrada a int
             minimo = int(minimo_str)
             break
         except ValueError:
             print("ERROR: La población mínima debe ser un número entero.")
-
-    # Solicita el valor máximo con validaciones
-    while True:
+    while True: #Solicita el valor máximo con validaciones
         maximo_str = input("Ingrese la población máxima: ").strip()
-        if maximo_str == "":
+        if maximo_str == "": #Valida que la entrada no esté vacía
             print("ERROR: No puede dejar la población máxima vacía.")
             continue
-        try:
+        try: #Intenta pasar la entrada a int y validar que min<max
             maximo = int(maximo_str)
-            if maximo < minimo:
+            if maximo < minimo: #Valida que min<max
                 print("ERROR: La población máxima no puede ser menor que la mínima.")
                 continue
             break
