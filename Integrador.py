@@ -2,6 +2,7 @@ import csv
 import os
 #Falta chequear duplicados
 #Agregar editar pais y agregar pais
+#Busqueda parcial: falta que encuentr un pais cuando no pones el acento
 #Funciones manejo de csv
 def leer_archivo(): 
     try: 
