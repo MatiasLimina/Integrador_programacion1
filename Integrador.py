@@ -96,28 +96,24 @@ def id_busqueda (max): #Valida el ID de los país
 
 #Funciones filtrado
 def filtrar_por_continente(dic_paises): #Filtra paises por continente
-    # Crea una lista con los continentes disponibles sin repetir
-    continentes_disponibles = []
+    continentes_disponibles = [] # Crea una lista con los continentes disponibles sin repetir
     for pais in dic_paises:
         continente_actual = pais.get("continente")
         if continente_actual not in continentes_disponibles:
             continentes_disponibles.append(continente_actual)
-
     # Muestra el listado de continentes disponibles
     print("=== CONTINENTES DISPONIBLES ===")
     for i in range(len(continentes_disponibles)):
         print(f"{i}) {continentes_disponibles[i]}")
-    print("===============================")
-
-    # Solicita al usuario que elija un continente por ID con validaciones
-    while True:
+    print("===============================")   
+    while True: # Solicita al usuario que elija un continente por ID con validaciones
         entrada = input(f"Ingrese el ID del continente (0 - {len(continentes_disponibles)-1}): ").strip()
-        if entrada == "":
+        if entrada == "": #Valida que el campo no esté vacío
             print("ERROR: El campo no debe estar vacío.")
             continue
-        try:
+        try: #Intenta pasar el ID de str a int y validar que esté dentro del rango
             entrada_int = int(entrada)
-            if 0 <= entrada_int < len(continentes_disponibles):
+            if 0 <= entrada_int < len(continentes_disponibles): #Valida que el ID esté dentro del rango
                 continente_elegido = continentes_disponibles[entrada_int]
                 break
             else:
