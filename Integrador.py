@@ -249,17 +249,16 @@ def sub_menu_ordenar_paises(dic_paises): #Muestra opciones y realiza el proceso 
                 print()
                 mostrar_lista_paises(orden_superficie_descendente)
 
-def ordenar_por_nombre(lista_de_diccionarios):
+def ordenar_por_nombre(lista_de_diccionarios): #Ordena paises por nombre
     return sorted(lista_de_diccionarios, key=lambda pais: pais["nombre"])
 
-def ordenar_por_poblacion(lista_de_diccionarios):
-    #Ordena una lista de diccionarios de países por la clave 'poblacion' de forma ascendente
+def ordenar_por_poblacion(lista_de_diccionarios): #Ordena paises por la clave "poblacion" de forma ascendente
     return sorted(lista_de_diccionarios, key=lambda pais: pais["poblacion"])
 
-def ordenar_por_superficie_ascendente(lista_de_diccionarios):
+def ordenar_por_superficie_ascendente(lista_de_diccionarios): #Ordena paises por superficie de forma ascendente
     return sorted(lista_de_diccionarios, key=lambda pais: pais["superficie"])
 
-def ordenar_por_superficie_descendente(lista_de_diccionarios):
+def ordenar_por_superficie_descendente(lista_de_diccionarios): #Ordena paises por superficie de forma descendente
     return sorted(lista_de_diccionarios, key=lambda pais: pais["superficie"],reverse=True)
 
 #Funciones de estadísticas
