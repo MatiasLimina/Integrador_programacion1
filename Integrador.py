@@ -262,12 +262,12 @@ def ordenar_por_superficie_descendente(lista_de_diccionarios): #Ordena paises po
     return sorted(lista_de_diccionarios, key=lambda pais: pais["superficie"],reverse=True)
 
 #Funciones de estadísticas
-def estadistica_mayor_menor_poblacion(paises): #Muestra el pais con menor y mayot población.
-    if not paises:
+def estadistica_mayor_menor_poblacion(paises): #Muestra el pais con menor y mayor población
+    if not paises: #Valida que la lista de paises exista
         print("ERROR: No hay datos de países cargados.")
         return
-    
-    # Ordenamos por población (de mayor a menor)
+
+    # Ordena por población (de mayor a menor)
     pais_mayor = max(paises, key=lambda x: x["poblacion"])
     pais_menor = min(paises, key=lambda x: x["poblacion"])
 
@@ -275,15 +275,15 @@ def estadistica_mayor_menor_poblacion(paises): #Muestra el pais con menor y mayo
     print(f"País con mayor población: {pais_mayor['nombre']} ({pais_mayor['poblacion']})")
     print(f"País con menor población: {pais_menor['nombre']} ({pais_menor['poblacion']})")
 
-def estadistica_promedio_poblacion(paises): #Calcula y muestra el promedio global de población.
-    if not paises:
+def estadistica_promedio_poblacion(paises): #Calcula y muestra el promedio global de población
+    if not paises: #Valida que la lista de paises exista
         print("ERROR: No hay datos de países cargados.")
         return
 
     total_poblacion = sum(p.get("poblacion", 0) for p in paises)
     cantidad_paises = len(paises)
 
-    if cantidad_paises == 0:
+    if cantidad_paises == 0: #Valida que hayan paises disponibles
         print("ERROR: No hay países cargados.")
         return
 
@@ -292,16 +292,16 @@ def estadistica_promedio_poblacion(paises): #Calcula y muestra el promedio globa
     print("\n=== PROMEDIO GLOBAL DE POBLACIÓN ===")
     print(f"Promedio de población: {round(promedio, 2)} habitantes")
 
-def estadistica_promedio_superficie(paises): #Calcula y muestra el promedio global de superficie.
+def estadistica_promedio_superficie(paises): #Calcula y muestra el promedio global de superficie
 
-    if not paises:
+    if not paises: #Valida que la lista de paises exista
         print("ERROR: No hay datos de países cargados.")
         return
 
     total_superficie = sum(p.get("superficie", 0) for p in paises)
     cantidad_paises = len(paises)
 
-    if cantidad_paises == 0:
+    if cantidad_paises == 0: #Valida que hayan paises disponibles
         print("ERROR: No hay países cargados.")
         return
 
@@ -310,13 +310,12 @@ def estadistica_promedio_superficie(paises): #Calcula y muestra el promedio glob
     print("\n=== PROMEDIO GLOBAL DE SUPERFICIE ===")
     print(f"Promedio de superficie: {round(promedio, 2)} km²")
 
-def estadistica_cant_paises_por_continente(paises): #Muestra la cantidad total de países por continente.
-    if not paises:
+def estadistica_cant_paises_por_continente(paises): #Muestra la cantidad total de países por continente
+    if not paises: #Valida que la lista de paises exista
         print("ERROR: No hay datos de países cargados.")
         return
 
-    # Creamos un diccionario para contar
-    continentes = {}
+    continentes = {} # Crea un diccionario para contar
     for p in paises:
         cont = p.get("continente", "Desconocido").capitalize()
         continentes[cont] = continentes.get(cont, 0) + 1
