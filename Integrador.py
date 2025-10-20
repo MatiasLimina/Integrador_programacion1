@@ -40,21 +40,21 @@ def validar_csv(linea): #Valida cada línea del csv antes de agregarlo a la list
     poblacion = linea.get("poblacion") 
     superficie = linea.get("superficie")
     continente = linea.get("continente")
-    if pais == "":
+    if pais == "": #Valida que el valor de "nombre" no esté vacío
         print("ERROR: El campo ¨nombre¨ no debe estar vacío")
         return None
-    if continente == "":
+    if continente == "": #Valida que el valor de "continente" no esté vacío
         print("ERROR: El campo ¨continente¨ no debe estar vacío")
         return None
-    try:
+    try: #Intenta leer el valor "población" como entero
         poblacion = int(poblacion)
-    except ValueError:
-        print(f"ERROR: {poblacion} datos inválidos, el campo ¨poblacion¨ espera un número")
+    except ValueError: #Si el valor "población" no es entero
+        print(f"ERROR: {poblacion} datos inválidos, el campo ¨poblacion¨ espera un entero")
         return None
-    try:
+    try: #Intenta leer el valor "superficie" como entero
         superficie = int(superficie)
-    except ValueError:
-        print(f"ERROR: {superficie} datos inválidos, el campo ¨superficie¨ espera un número")
+    except ValueError: #Si el valor "superficie" no es entero
+        print(f"ERROR: {superficie} datos inválidos, el campo ¨superficie¨ espera un entero")
         return None
     linea_validada = {"nombre":pais,"poblacion":poblacion,"superficie":superficie,"continente":continente}
     return linea_validada
