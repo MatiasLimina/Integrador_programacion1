@@ -1,6 +1,6 @@
 import csv
 import os
-
+#Falta duplicar duplicados
 #Funciones manejo de csv
 def leer_archivo(): 
     try: 
