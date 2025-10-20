@@ -1,6 +1,7 @@
 import csv
 import os
 #Falta duplicar duplicados
+#Agregar editar pais y agregar pais
 #Funciones manejo de csv
 def leer_archivo(): 
     try: 
