@@ -1,6 +1,6 @@
 import csv
 import os
-#FUNCIONES
+
 #Funciones manejo de csv
 def leer_archivo(): #Lee el archivo y crea una lista con líneas válidas del csv
     try: #Intenta leer el csv y realizar el procedimiento
@@ -407,6 +407,6 @@ RUTA_ARCHIVO = os.path.join(script_dir, "Paises.csv")
 paises = leer_archivo() #Guarda los países como lista
 lista_paises,lista_poblacion,lista_superficie,lista_continente = crear_listas_columnas(paises) #Crea lista con las keys de cada país
 
-#main()
-if __name__ == "__main__": # Ejecuta el programa principal
+
+if __name__ == "__main__":
     main()
