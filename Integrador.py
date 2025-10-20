@@ -325,23 +325,23 @@ def estadistica_cant_paises_por_continente(paises): #Muestra la cantidad total d
         print(f"{continente}: {cantidad}")
 
 #MAIN
-def main():
-    salir = True
-    while salir:
+def main(): #Ejecuta el codigo principal
+    salir = False
+    while salir: #Muestra el menú hasta que el usuario lo indique
         print("--- MENU ---")
         print(" 1) Busqueda por nombre\n 2) Filtrar países\n 3) Ordenar países\n 4) Mostrar estadísticas\n 5) Salir")
-        opc = input("\n Elija una opción... ").strip()
-        while not opc.isnumeric:
+        opc = input("\n Elija una opción: ").strip()
+        while not opc.isnumeric: #Valida que la entrada sea un numero
             print("Opcion inválida")
             print(" 1) Busqueda por nombre\n 2) Filtrar países\n 3) Ordenar países\n 4) Mostrar estadísticas\n 5) Salir")
             opc = input("Elija una opción... ").strip()
         match opc:
-            case "1":#Buscar pais por nombre (coincidencia parcial o exacta).
+            case "1": #Buscar pais por nombre (coincidencia parcial o exacta)
                 nombre = input("Ingrese un nombre ").capitalize().strip()
                 paises_encontrados = busqueda_nombre_parcial(nombre,paises)
-                if not paises_encontrados: # Si la lista está vacía
+                if not paises_encontrados: #Si la lista está vacía
                     print("No se encontraron coincidencias")
-                elif len(paises_encontrados) == 1: # Si solo hay una coincidencia (exacta o parcial)
+                elif len(paises_encontrados) == 1: #Si solo hay una coincidencia (exacta o parcial)
                     mostrar_lista_paises(paises_encontrados)
                 else:
                     pais_elegido = elegir_nombre(paises_encontrados)
@@ -399,7 +399,7 @@ def main():
                         print("Seleccione una opción válida.")
             case "5": #Salir
                 print("Gracias por utilizar nuestro servicio!")
-                salir = False
+                salir = True
 
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
