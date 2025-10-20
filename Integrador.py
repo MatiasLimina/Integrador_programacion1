@@ -173,28 +173,25 @@ def filtrar_por_poblacion(dic_paises): #Filtra paises por población
     else:
         print("No se encontraron países dentro de ese rango de población.")
 
-def filtrar_por_superficie(dic_paises):
-    # Solicita el valor mínimo con validaciones
-    while True:
+def filtrar_por_superficie(dic_paises): #Filtra paises por superficie
+    while True: # Solicita el valor mínimo con validaciones
         minimo_str = input("Ingrese la superficie mínima: ").strip()
-        if minimo_str == "":
+        if minimo_str == "": #Valida que la entrada no esté vacía
             print("ERROR: No puede dejar la superficie mínima vacía.")
             continue
-        try:
+        try: #Intenta pasar la entrada a int
             minimo = int(minimo_str)
             break
         except ValueError:
             print("ERROR: La superficie mínima debe ser un número entero.")
-
-    # Solicita el valor máximo con validaciones
-    while True:
+    while True: # Solicita el valor máximo con validaciones
         maximo_str = input("Ingrese la superficie máxima: ").strip()
-        if maximo_str == "":
+        if maximo_str == "": #Valida que la entrada no esté vacía
             print("ERROR: No puede dejar la superficie máxima vacía.")
             continue
-        try:
+        try: #Intenta pasar la entrada a int y validar que min<max
             maximo = int(maximo_str)
-            if maximo < minimo:
+            if maximo < minimo: #Valida que min<max
                 print("ERROR: La superficie máxima no puede ser menor que la mínima.")
                 continue
             break
