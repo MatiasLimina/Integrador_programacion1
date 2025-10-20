@@ -273,6 +273,70 @@ def ordenar_por_superficie_ascendente(lista_de_diccionarios):
 def ordenar_por_superficie_descendente(lista_de_diccionarios):
     return sorted(lista_de_diccionarios, key=lambda pais: pais["superficie"],reverse=True)
 
+#Funciones de estadísticas
+def estadistica_mayor_menor_poblacion(paises): #Muestra el pais con menor y mayot población.
+    if not paises:
+        print("ERROR: No hay datos de países cargados.")
+        return
+    
+    # Ordenamos por población (de mayor a menor)
+    pais_mayor = max(paises, key=lambda x: x["poblacion"])
+    pais_menor = min(paises, key=lambda x: x["poblacion"])
+
+    print("\n=== PAÍSES CON MAYOR Y MENOR POBLACIÓN ===")
+    print(f"País con mayor población: {pais_mayor['nombre']} ({pais_mayor['poblacion']})")
+    print(f"País con menor población: {pais_menor['nombre']} ({pais_menor['poblacion']})")
+
+def estadistica_promedio_poblacion(paises): #Calcula y muestra el promedio global de población.
+    if not paises:
+        print("ERROR: No hay datos de países cargados.")
+        return
+
+    total_poblacion = sum(p.get("poblacion", 0) for p in paises)
+    cantidad_paises = len(paises)
+
+    if cantidad_paises == 0:
+        print("ERROR: No hay países cargados.")
+        return
+
+    promedio = total_poblacion / cantidad_paises
+
+    print("\n=== PROMEDIO GLOBAL DE POBLACIÓN ===")
+    print(f"Promedio de población: {round(promedio, 2)} habitantes")
+
+def estadistica_promedio_superficie(paises): #Calcula y muestra el promedio global de superficie.
+
+    if not paises:
+        print("ERROR: No hay datos de países cargados.")
+        return
+
+    total_superficie = sum(p.get("superficie", 0) for p in paises)
+    cantidad_paises = len(paises)
+
+    if cantidad_paises == 0:
+        print("ERROR: No hay países cargados.")
+        return
+
+    promedio = total_superficie / cantidad_paises
+
+    print("\n=== PROMEDIO GLOBAL DE SUPERFICIE ===")
+    print(f"Promedio de superficie: {round(promedio, 2)} km²")
+
+def estadistica_cant_paises_por_continente(paises): #Muestra la cantidad total de países por continente.
+    if not paises:
+        print("ERROR: No hay datos de países cargados.")
+        return
+
+    # Creamos un diccionario para contar
+    continentes = {}
+    for p in paises:
+        cont = p.get("continente", "Desconocido").capitalize()
+        continentes[cont] = continentes.get(cont, 0) + 1
+
+    print("\n=== CANTIDAD DE PAÍSES POR CONTINENTE ===")
+    for continente, cantidad in continentes.items():
+        print(f"{continente}: {cantidad}")
+
 #MAIN
 def main():
     salir = True
@@ -298,14 +362,11 @@ def main():
             case "2":#Filtrar paises
                 print("1) Filtrar por continente\n2) Filtrar por rango de población\n3) Filtrar por rango de superficie\n4) Salir")
                 opc_categoria = input("Ingrese el filtro que desea aplicar: ").strip() #Seleccionar Filtro
-                
-                # Validación consistente con el resto del código: exige que sea numérico
-                while not opc_categoria.isnumeric():
+                while not opc_categoria.isnumeric(): # Valida que la entrada sea numérica
                     print("Opcion inválida")
                     print("1) Filtrar por continente\n2) Filtrar por rango de población\n3) Filtrar por rango de superficie\n4) Salir")
                     opc_categoria = input("Ingrese el filtro que desea aplicar: ").strip()
-                
-                match opc_categoria:
+                match opc_categoria: #Abre submenú con filtros aplicables
                     case "1": #Filtrar por continente
                         filtrar_por_continente(paises) # Llama a la función que lista continentes y permite elegir por ID
                     case "2": #Filtrar por población
@@ -318,8 +379,37 @@ def main():
                         print("Selecciones una opción válida.")
             case "3": #Ordenar paises
                 sub_menu_ordenar_paises(paises)
-            case "4": #Mostrar estadisticas
-                continue
+            case "4": #Mostrar estadísticas
+                print("1) País con mayor y menor población")
+                print("2) Promedio de población")
+                print("3) Promedio de superficie")
+                print("4) Cantidad de países por continente")
+                print("5) Salir")
+                opc_est = input("Ingrese la opción deseada: ").strip()
+
+                # Validación esencial (misma lógica que el resto del código)
+                while not opc_est.isnumeric():
+                    print("Opción inválida. Debe ingresar un número.")
+                    print("1) País con mayor y menor población")
+                    print("2) Promedio de población")
+                    print("3) Promedio de superficie")
+                    print("4) Cantidad de países por continente")
+                    print("5) Salir")
+                    opc_est = input("Ingrese la opción deseada: ").strip()
+
+                match opc_est:
+                    case "1":
+                        estadistica_mayor_menor_poblacion(paises)
+                    case "2":
+                        estadistica_promedio_poblacion(paises)
+                    case "3":
+                        estadistica_promedio_superficie(paises)
+                    case "4":
+                        estadistica_cant_paises_por_continente(paises)
+                    case "5":
+                        print("Volver al menú principal.")
+                    case _:
+                        print("Seleccione una opción válida.")
             case "5": #Salir
                 print("Gracias por utilizar nuestro servicio!")
                 salir = False
