@@ -5,6 +5,16 @@ def _normalizar_texto(texto):
     texto = texto.lower().strip()
     return ''.join(c for c in unicodedata.normalize('NFD', texto) if unicodedata.category(c) != 'Mn')
 
+def _difiere_por_un_caracter(str1, str2):
+    """Devuelve True si dos strings tienen el mismo largo y difieren en un solo carácter."""
+    if len(str1) != len(str2):
+        return False
+    diferencias = 0
+    for char1, char2 in zip(str1, str2):
+        if char1 != char2:
+            diferencias += 1
+    return diferencias == 1
+
 #Funciones buscar por nombre
 def busqueda_nombre_parcial(termino_busqueda, diccionario): #Realiza la busqueda de coincidencias
     coincidencias = []
@@ -12,14 +22,19 @@ def busqueda_nombre_parcial(termino_busqueda, diccionario): #Realiza la busqueda
     
     # Caso de búsqueda exacta (insensible a mayúsculas y acentos)
     for pais in diccionario:
-        if _normalizar_texto(pais.get("nombre", "")) == termino_normalizado:
+        nombre_pais_normalizado = _normalizar_texto(pais.get("nombre", ""))
+        if nombre_pais_normalizado == termino_normalizado:
             return [pais]
 
     # Si no hay coincidencia exacta, busca coincidencias que comiencen con el término (insensible a mayúsculas y acentos)
     for pais in diccionario:
         if _normalizar_texto(pais.get("nombre", "")).startswith(termino_normalizado):
             coincidencias.append(pais) 
-    return coincidencias
+    if coincidencias:
+        return coincidencias
+
+    # Si no hay coincidencias, busca por diferencia de un carácter (ej: "irac" -> "irak")
+    return [pais for pais in diccionario if _difiere_por_un_caracter(_normalizar_texto(pais.get("nombre", "")), termino_normalizado)]
 
 def elegir_nombre(coincidencias): #Muestra coincidencias al usuario
     print("Esta es la lista de paises que coinciden con su búsqueda: ")

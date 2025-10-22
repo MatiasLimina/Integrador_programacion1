@@ -9,10 +9,7 @@ from Sub_Menus import *
 #Por hacer
 #Falta chequear duplicados
 #Agregar editar pais y agregar pais
-#Busqueda parcial: falta que encuentr un pais cuando no pones el acento y pais mal escrito por ejemplo "irkn"
-#Mover funciones a archivos aparte
 #Si inicializa sin csv creado que lo cree con header correspondientes
-#Funciones manejo de csv
 #manejar numeros como floats
 #Revisar casos border(Agregar funcion recursiva que filtr en el directorio y me devuelva el archivo csv)
 def limpiar_pantalla():
