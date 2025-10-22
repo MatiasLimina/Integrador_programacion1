@@ -10,7 +10,6 @@ import os
 #Funciones manejo de csv
 #manejar numeros como floats
 #buscar forma de limpiar la terminal
-
 #Revisar casos border
 def leer_archivo(): 
     try: 
