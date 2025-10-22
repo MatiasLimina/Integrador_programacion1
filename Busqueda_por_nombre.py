@@ -1,16 +1,23 @@
+import unicodedata
+
+def _normalizar_texto(texto):
+    """Convierte a minúsculas y quita acentos de un texto."""
+    texto = texto.lower().strip()
+    return ''.join(c for c in unicodedata.normalize('NFD', texto) if unicodedata.category(c) != 'Mn')
+
 #Funciones buscar por nombre
 def busqueda_nombre_parcial(termino_busqueda, diccionario): #Realiza la busqueda de coincidencias
     coincidencias = []
-    termino_busqueda_lower = termino_busqueda.lower().strip()
+    termino_normalizado = _normalizar_texto(termino_busqueda)
     
-    # Caso de búsqueda exacta primero
+    # Caso de búsqueda exacta (insensible a mayúsculas y acentos)
     for pais in diccionario:
-        if pais.get("nombre", "").lower() == termino_busqueda_lower:
+        if _normalizar_texto(pais.get("nombre", "")) == termino_normalizado:
             return [pais]
 
-    # Si no hay coincidencia exacta, busca coincidencias parciales
+    # Si no hay coincidencia exacta, busca coincidencias que comiencen con el término (insensible a mayúsculas y acentos)
     for pais in diccionario:
-        if termino_busqueda_lower in pais.get("nombre", "").lower():
+        if _normalizar_texto(pais.get("nombre", "")).startswith(termino_normalizado):
             coincidencias.append(pais) 
     return coincidencias
 

@@ -15,14 +15,9 @@ from Sub_Menus import *
 #Funciones manejo de csv
 #manejar numeros como floats
 #Revisar casos border(Agregar funcion recursiva que filtr en el directorio y me devuelva el archivo csv)
-
-
-
 def limpiar_pantalla():
     # Limpia la pantalla de la terminal. 'cls' para Windows, 'clear' para otros.
     os.system('cls' if os.name == 'nt' else 'clear')
-
-
 
 #MAIN
 def main(): #Ejecuta el codigo principal
