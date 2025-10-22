@@ -1,6 +1,7 @@
 import csv
 import os
 from Manejo_csv import *
+from Busqueda_por_nombre import *
 #Por hacer
 #Falta chequear duplicados
 #Agregar editar pais y agregar pais
