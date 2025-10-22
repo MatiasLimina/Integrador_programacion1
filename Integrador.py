@@ -8,6 +8,7 @@ import os
 #Cada opcion debe llamar una funcion
 #Si inicializa sin csv creado que lo cree con header correspondientes
 #Funciones manejo de csv
+#Revisar casos border
 def leer_archivo(): 
     try: 
         with open(RUTA_ARCHIVO,"r",encoding="UTF-8") as archivo:
