@@ -54,9 +54,23 @@ def sub_menu_ordenar_paises(dic_paises): #Muestra opciones y realiza el proceso 
                 print()
                 mostrar_lista_paises(orden_superficie_descendente)
 
+def sub_menu_busqueda_nombre():
+    nombre = input("Ingrese un nombre ").capitalize().strip()
+    paises_encontrados = busqueda_nombre_parcial(nombre,paises)
+    if not paises_encontrados: 
+        print("No se encontraron coincidencias")
+    elif len(paises_encontrados) == 1: 
+        mostrar_lista_paises(paises_encontrados)
+    else:
+        pais_elegido = elegir_nombre(paises_encontrados)
+        mostrar_lista_paises([pais_elegido])
 
-
-
+def opcion_menu_principal():
+    opc = input("\n Elija una opción: ").strip()
+    while not opc.isnumeric(): 
+        print("Opción inválida. Por favor, ingrese un número.")
+        opc = input("\n Elija una opción: ").strip()
+    return opc
 #MAIN
 def main(): #Ejecuta el codigo principal
     salir = False
@@ -64,21 +78,10 @@ def main(): #Ejecuta el codigo principal
     while not salir: #Muestra el menú hasta que el usuario lo indique
         print("--- MENU ---")
         print(" 1) Busqueda por nombre\n 2) Filtrar países\n 3) Ordenar países\n 4) Mostrar estadísticas\n 5) Salir")
-        opc = input("\n Elija una opción: ").strip()
-        while not opc.isnumeric(): 
-            print("Opción inválida. Por favor, ingrese un número.")
-            opc = input("\n Elija una opción: ").strip()
+        opc = opcion_menu_principal()
         match opc:
             case "1": #Busca pais por nombre (coincidencia parcial o exacta)
-                nombre = input("Ingrese un nombre ").capitalize().strip()
-                paises_encontrados = busqueda_nombre_parcial(nombre,paises)
-                if not paises_encontrados: 
-                    print("No se encontraron coincidencias")
-                elif len(paises_encontrados) == 1: 
-                    mostrar_lista_paises(paises_encontrados)
-                else:
-                    pais_elegido = elegir_nombre(paises_encontrados)
-                    mostrar_lista_paises([pais_elegido])
+                sub_menu_busqueda_nombre()
             case "2": #Filtra países por continente, rango de población o rango de superficie
                 print("1) Filtrar por continente\n2) Filtrar por rango de población\n3) Filtrar por rango de superficie\n4) Salir")
                 opc_categoria = input("Ingrese el filtro que desea aplicar: ").strip()
