@@ -10,7 +10,9 @@ import os
 #Funciones manejo de csv
 #manejar numeros como floats
 #buscar forma de limpiar la terminal
-#Revisar casos border
+#Revisar casos border(Agregar funcion recursiva que filtr en el directorio y me devuelva el archivo csv)
+
+
 def leer_archivo(): 
     try: 
         with open(RUTA_ARCHIVO,"r",encoding="UTF-8") as archivo:
