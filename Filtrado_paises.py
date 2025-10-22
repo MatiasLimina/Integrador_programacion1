@@ -1,3 +1,5 @@
+from Manejo_csv import mostrar_lista_paises
+
 #Funciones filtrado
 def filtrar_por_continente(dic_paises): #Filtra paises por continente
     continentes_disponibles = [] 

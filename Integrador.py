@@ -10,16 +10,19 @@ from Estadisticas import *
 #Agregar editar pais y agregar pais
 #Busqueda parcial: falta que encuentr un pais cuando no pones el acento y pais mal escrito por ejemplo "irkn"
 #Mover funciones a archivos aparte
-#Cada opcion debe llamar una funcion
 #Si inicializa sin csv creado que lo cree con header correspondientes
 #Funciones manejo de csv
 #manejar numeros como floats
-#buscar forma de limpiar la terminal
 #Revisar casos border(Agregar funcion recursiva que filtr en el directorio y me devuelva el archivo csv)
 
 
-#Funciones ordenar paises
+
+def limpiar_pantalla():
+    # Limpia la pantalla de la terminal. 'cls' para Windows, 'clear' para otros.
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 def sub_menu_ordenar_paises(dic_paises): #Muestra opciones y realiza el proceso de orden de paises
+    limpiar_pantalla()
     print("=====================")
     print("Como desea prdenar los paises?")
     print("1) Nombre \n2)Población \n3)Superficie\n")
@@ -55,6 +58,7 @@ def sub_menu_ordenar_paises(dic_paises): #Muestra opciones y realiza el proceso 
                 mostrar_lista_paises(orden_superficie_descendente)
 
 def sub_menu_busqueda_nombre():
+    limpiar_pantalla()
     nombre = input("Ingrese un nombre ").capitalize().strip()
     paises_encontrados = busqueda_nombre_parcial(nombre,paises)
     if not paises_encontrados: 
@@ -71,6 +75,50 @@ def opcion_menu_principal():
         print("Opción inválida. Por favor, ingrese un número.")
         opc = input("\n Elija una opción: ").strip()
     return opc
+
+def sub_menu_filtrar_paises():
+    limpiar_pantalla()
+    print("1) Filtrar por continente\n2) Filtrar por rango de población\n3) Filtrar por rango de superficie\n4) Salir")
+    opc_categoria = input("Ingrese el filtro que desea aplicar: ").strip()
+    while not opc_categoria.isnumeric(): 
+        print("Opción no disponible, ingrese un valor correcto: ")
+        opc_categoria = input("Ingrese el filtro que desea aplicar: ").strip()
+    match opc_categoria: #Abre submenú con filtros aplicables
+        case "1": #Filtrar por continente
+            filtrar_por_continente(paises) 
+        case "2": #Filtrar por población
+            filtrar_por_poblacion(paises) 
+        case "3": #Filtrar por continente
+            filtrar_por_superficie(paises) 
+        case "4": #Salir
+            print("Volver al menú principal.")
+        case _:
+            print("Seleccione una opción válida.")
+def sub_menu_estadisticas():
+    limpiar_pantalla()
+    print("1) País con mayor y menor población")
+    print("2) Promedio de población")
+    print("3) Promedio de superficie")
+    print("4) Cantidad de países por continente")
+    print("5) Salir")
+    opc_est = input("Ingrese la opción deseada: ").strip()
+    while not opc_est.isnumeric(): # Valida que la entrada sea numérica
+        print("Opción inválida. Debe ingresar un número.")
+        opc_est = input("Ingrese la opción deseada: ").strip()
+    match opc_est:
+        case "1":
+            estadistica_mayor_menor_poblacion(paises)
+        case "2":
+            estadistica_promedio_poblacion(paises)
+        case "3":
+            estadistica_promedio_superficie(paises)
+        case "4":
+            estadistica_cant_paises_por_continente(paises)
+        case "5":
+            print("Volver al menú principal.")
+        case _:
+            print("Seleccione una opción válida.")
+
 #MAIN
 def main(): #Ejecuta el codigo principal
     salir = False
@@ -83,53 +131,16 @@ def main(): #Ejecuta el codigo principal
             case "1": #Busca pais por nombre (coincidencia parcial o exacta)
                 sub_menu_busqueda_nombre()
             case "2": #Filtra países por continente, rango de población o rango de superficie
-                print("1) Filtrar por continente\n2) Filtrar por rango de población\n3) Filtrar por rango de superficie\n4) Salir")
-                opc_categoria = input("Ingrese el filtro que desea aplicar: ").strip()
-                while not opc_categoria.isnumeric(): 
-                    print("Opción no disponible, ingrese un valor correcto: ")
-                    opc_categoria = input("Ingrese el filtro que desea aplicar: ").strip()
-                match opc_categoria: #Abre submenú con filtros aplicables
-                    case "1": #Filtrar por continente
-                        filtrar_por_continente(paises) 
-                    case "2": #Filtrar por población
-                        filtrar_por_poblacion(paises) 
-                    case "3": #Filtrar por continente
-                        filtrar_por_superficie(paises) 
-                    case "4": #Salir
-                        print("Volver al menú principal.")
-                    case _:
-                        print("Seleccione una opción válida.")
+                sub_menu_filtrar_paises()
             case "3": #Ordenar países
                 sub_menu_ordenar_paises(paises)
             case "4": #Mostrar estadísticas
-                print("1) País con mayor y menor población")
-                print("2) Promedio de población")
-                print("3) Promedio de superficie")
-                print("4) Cantidad de países por continente")
-                print("5) Salir")
-                opc_est = input("Ingrese la opción deseada: ").strip()
-
-                while not opc_est.isnumeric(): # Valida que la entrada sea numérica
-                    print("Opción inválida. Debe ingresar un número.")
-                    opc_est = input("Ingrese la opción deseada: ").strip()
-
-                match opc_est:
-                    case "1":
-                        estadistica_mayor_menor_poblacion(paises)
-                    case "2":
-                        estadistica_promedio_poblacion(paises)
-                    case "3":
-                        estadistica_promedio_superficie(paises)
-                    case "4":
-                        estadistica_cant_paises_por_continente(paises)
-                    case "5":
-                        print("Volver al menú principal.")
-                    case _:
-                        print("Seleccione una opción válida.")
+                sub_menu_estadisticas()
             case "5": #Salir
                 print("¡Gracias por utilizar nuestro servicio!")
                 salir = True
-
+        if not salir:
+            input("\nPresione Enter para volver al menú principal...")
 
 
 paises = leer_archivo() # Guarda los países como lista
