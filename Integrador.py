@@ -7,7 +7,6 @@ from Ordenar_paises import *
 from Estadisticas import *
 from Sub_Menus import *
 #Por hacer
-#Falta chequear duplicados
 #Agregar editar pais y agregar pais
 #Si inicializa sin csv creado que lo cree con header correspondientes
 #manejar numeros como floats
@@ -22,7 +21,7 @@ def main(): #Ejecuta el codigo principal
     
     while not salir: #Muestra el menú hasta que el usuario lo indique
         print("--- MENU ---")
-        print(" 1) Busqueda por nombre\n 2) Filtrar países\n 3) Ordenar países\n 4) Mostrar estadísticas\n 5) Salir")
+        print(" 1) Busqueda por nombre\n 2) Filtrar países\n 3) Ordenar países\n 4) Mostrar estadísticas\n 5) Agregar país\n 6) Salir")
         opc = opcion_menu_principal()
         match opc:
             case "1": #Busca pais por nombre (coincidencia parcial o exacta)
@@ -33,7 +32,9 @@ def main(): #Ejecuta el codigo principal
                 sub_menu_ordenar_paises(paises)
             case "4": #Mostrar estadísticas
                 sub_menu_estadisticas(paises)
-            case "5": #Salir
+            case "5": #Agregar un nuevo país
+                sub_menu_agregar_pais(paises)
+            case "6": #Salir
                 print("¡Gracias por utilizar nuestro servicio!")
                 salir = True
         if not salir:

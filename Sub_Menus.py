@@ -1,4 +1,4 @@
-from Manejo_csv import mostrar_lista_paises
+from Manejo_csv import mostrar_lista_paises, agregar_pais_al_csv, _normalizar_texto as normalizar_para_csv
 from Ordenar_paises import (ordenar_por_nombre, ordenar_por_poblacion, 
                             ordenar_por_superficie_ascendente, ordenar_por_superficie_descendente)
 from Busqueda_por_nombre import busqueda_nombre_parcial, elegir_nombre
@@ -6,6 +6,7 @@ from Filtrado_paises import filtrar_por_continente, filtrar_por_poblacion, filtr
 from Estadisticas import (estadistica_mayor_menor_poblacion, estadistica_promedio_poblacion, 
                           estadistica_promedio_superficie, estadistica_cant_paises_por_continente)
 from Integrador import limpiar_pantalla
+import time
 
 def sub_menu_ordenar_paises(dic_paises): #Muestra opciones y realiza el proceso de orden de paises
     limpiar_pantalla()
@@ -80,6 +81,62 @@ def sub_menu_filtrar_paises(paises):
             print("Volver al menú principal.")
         case _:
             print("Seleccione una opción válida.")
+
+def sub_menu_agregar_pais(paises):
+    limpiar_pantalla()
+    print("--- AGREGAR NUEVO PAÍS ---")
+
+    # 1. Validar Nombre
+    while True:
+        nombre = input("Ingrese el nombre del país: ").strip().capitalize()
+        if not nombre:
+            print("ERROR: El nombre no puede estar vacío.")
+            continue
+        # Comprobar si el país ya existe
+        nombre_normalizado = normalizar_para_csv(nombre)
+        if any(normalizar_para_csv(p['nombre']) == nombre_normalizado for p in paises):
+            print(f"ERROR: El país '{nombre}' ya existe en la lista.")
+        else:
+            break
+
+    # 2. Validar Población
+    while True:
+        poblacion_str = input("Ingrese la población (número entero): ").strip()
+        try:
+            poblacion = int(poblacion_str)
+            if poblacion < 0:
+                print("ERROR: La población no puede ser un número negativo.")
+                continue
+            break
+        except ValueError:
+            print("ERROR: Ingrese un número entero válido para la población.")
+
+    # 3. Validar Superficie
+    while True:
+        superficie_str = input("Ingrese la superficie (puede usar '.' o ',' como decimal): ").strip()
+        try:
+            superficie = float(superficie_str.replace(',', '.'))
+            if superficie < 0:
+                print("ERROR: La superficie no puede ser un número negativo.")
+                continue
+            break
+        except (ValueError, TypeError):
+            print("ERROR: Ingrese un número válido para la superficie.")
+
+    # 4. Validar Continente
+    continente = input("Ingrese el continente: ").strip().capitalize()
+    while not continente:
+        print("ERROR: El continente no puede estar vacío.")
+        continente = input("Ingrese el continente: ").strip().capitalize()
+
+    nuevo_pais = {"nombre": nombre, "poblacion": poblacion, "superficie": superficie, "continente": continente}
+    
+    if agregar_pais_al_csv(nuevo_pais):
+        paises.append(nuevo_pais) # Agregamos el país a la lista en memoria
+        print(f"\n¡Éxito! El país '{nombre}' ha sido agregado correctamente.")
+    else:
+        print(f"\nNo se pudo agregar el país '{nombre}' al archivo.")
+    time.sleep(2) # Pausa para que el usuario lea el mensaje
 def sub_menu_estadisticas(paises):
     limpiar_pantalla()
     print("1) País con mayor y menor población")

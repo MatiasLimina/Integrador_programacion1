@@ -2,6 +2,8 @@ import csv
 import os
 import unicodedata
 
+NOMBRES_COLUMNAS = ["nombre", "poblacion", "superficie", "continente"]
+
 def leer_archivo(): 
     try: 
         with open(RUTA_ARCHIVO,"r",encoding="UTF-8") as archivo:
@@ -16,6 +18,19 @@ def leer_archivo():
             return paises
     except FileNotFoundError: 
         return None
+
+def agregar_pais_al_csv(nuevo_pais):
+    """Agrega un nuevo país (diccionario) al final del archivo CSV."""
+    try:
+        # 'a' para append (agregar), newline='' para evitar líneas en blanco entre filas
+        with open(RUTA_ARCHIVO, "a", encoding="UTF-8", newline='') as archivo:
+            # DictWriter necesita los nombres de las columnas para escribir correctamente
+            escritor = csv.DictWriter(archivo, fieldnames=NOMBRES_COLUMNAS)
+            escritor.writerow(nuevo_pais)
+        return True
+    except IOError as e:
+        print(f"ERROR: No se pudo escribir en el archivo CSV: {e}")
+        return False
 
 def crear_listas_columnas(dic_paises): #Crea listas con los datos en cada columna
     lista_paises = []
