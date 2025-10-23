@@ -8,9 +8,6 @@ from Estadisticas import *
 from Sub_Menus import *
 from utilidades import *
 #Por hacer
-#Agregar editar pais y agregar pais
-#Si inicializa sin csv creado que lo cree con header correspondientes
-#manejar numeros como floats
 #Revisar casos border(Agregar funcion recursiva que filtr en el directorio y me devuelva el archivo csv)
 
 
