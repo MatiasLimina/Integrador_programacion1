@@ -1,15 +1,17 @@
 import csv
 import os
+import unicodedata
+
 def leer_archivo(): 
     try: 
         with open(RUTA_ARCHIVO,"r",encoding="UTF-8") as archivo:
             lector = csv.DictReader(archivo)
             paises = []
-            for linea in lector: 
-                linea_valida = validar_csv(linea)
-                if linea_valida == None:
-                    pass
-                else:
+            nombres_vistos = set() # Conjunto para rastrear nombres de países ya vistos
+            for i, linea in enumerate(lector, start=2): # Empezamos en 2 para contar la línea del CSV (1 es cabecera)
+                # Pasamos el conjunto de nombres vistos para que la función valide duplicados
+                linea_valida = validar_csv(linea, nombres_vistos, i)
+                if linea_valida:
                     paises.append(linea_valida) #Si la línea es válida la agrega a la lista
             return paises
     except FileNotFoundError: 
@@ -31,28 +33,41 @@ def mostrar_lista_paises(lista_de_paises): #Pasa la lista de diccionarios e impr
     for pais in lista_de_paises:
         print(f"Pais: {pais['nombre']}, Población: {pais['poblacion']}, Superficie: {pais['superficie']}km2, Continente: {pais['continente']}")
 
-def validar_csv(linea): #Valida cada línea del csv antes de agregarlo a la lista de diccionarios
+def _normalizar_texto(texto):
+    """Convierte a minúsculas, quita acentos y espacios extra de un texto."""
+    texto = texto.lower().strip()
+    return ''.join(c for c in unicodedata.normalize('NFD', texto) if unicodedata.category(c) != 'Mn')
+
+def validar_csv(linea, nombres_vistos, numero_linea): #Valida cada línea del csv antes de agregarlo a la lista de diccionarios
     pais = linea.get("nombre")
     poblacion = linea.get("poblacion") 
     superficie = linea.get("superficie")
     continente = linea.get("continente")
-    if pais == "": 
-        print("ERROR: El campo ¨nombre¨ no debe estar vacío")
+    if not pais: 
+        print(f"ADVERTENCIA: Línea {numero_linea}: El campo 'nombre' está vacío. Se omite la línea.")
         return None
-    if continente == "": 
-        print("ERROR: El campo ¨continente¨ no debe estar vacío")
+    if not continente: 
+        print(f"ADVERTENCIA: Línea {numero_linea}: El campo 'continente' para '{pais}' está vacío. Se omite la línea.")
         return None
     try: 
         poblacion = int(poblacion)
     except ValueError: 
-        print(f"ERROR: {poblacion} datos inválidos, el campo ¨poblacion¨ espera un entero")
+        print(f"ADVERTENCIA: Línea {numero_linea}: Dato de población inválido ('{poblacion}') para '{pais}'. Se omite la línea.")
         return None
     try: 
         # Reemplazamos la coma por un punto para poder convertir a float sin problemas.
         superficie = float(str(superficie).replace(',', '.'))
-    except ValueError: 
-        print(f"ERROR: '{superficie}' es un dato inválido. El campo 'superficie' espera un número (entero o decimal).")
+    except (ValueError, TypeError): 
+        print(f"ADVERTENCIA: Línea {numero_linea}: Dato de superficie inválido ('{superficie}') para '{pais}'. Se omite la línea.")
         return None
+    
+    # Verificación de duplicados
+    nombre_normalizado = _normalizar_texto(pais)
+    if nombre_normalizado in nombres_vistos:
+        print(f"ADVERTENCIA: Línea {numero_linea}: País duplicado encontrado ('{pais}'). Se omite la línea.")
+        return None
+    nombres_vistos.add(nombre_normalizado) # Si no es duplicado, se agrega al conjunto
+
     linea_validada = {"nombre":pais,"poblacion":poblacion,"superficie":superficie,"continente":continente}
     return linea_validada
 #RUTA DEL CSV
