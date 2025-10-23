@@ -55,6 +55,18 @@ def agregar_pais_al_csv(nuevo_pais):
         print(f"ERROR: No se pudo escribir en el archivo CSV: {e}")
         return False
 
+def reescribir_csv(lista_paises):
+    """Reescribe el archivo CSV completo con la lista de países proporcionada."""
+    try:
+        with open(RUTA_ARCHIVO, 'w', encoding="UTF-8", newline='') as archivo:
+            escritor = csv.DictWriter(archivo, fieldnames=NOMBRES_COLUMNAS)
+            escritor.writeheader()
+            escritor.writerows(lista_paises)
+        return True
+    except IOError as e:
+        print(f"ERROR CRÍTICO: No se pudo reescribir el archivo CSV: {e}")
+        return False
+
 def crear_listas_columnas(dic_paises): #Crea listas con los datos en cada columna
     lista_paises = []
     lista_poblacion=[]

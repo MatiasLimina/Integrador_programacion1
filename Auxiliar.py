@@ -1,3 +1,7 @@
+# def limpiar_pantalla():
+#     # Limpia la pantalla de la terminal. 'cls' para Windows, 'clear' para otros.
+#     os.system('cls' if os.name == 'nt' else 'clear')
+
 # Agregar al informe import csv, agregar import so
 # __file__: Es una variable especial de Python que contiene la ruta al script que se está ejecutando.
 # os.path.abspath(__file__): Convierte esa ruta en una ruta absoluta (ej: d:\...\Integrador.py).
