@@ -48,9 +48,10 @@ def validar_csv(linea): #Valida cada línea del csv antes de agregarlo a la list
         print(f"ERROR: {poblacion} datos inválidos, el campo ¨poblacion¨ espera un entero")
         return None
     try: 
-        superficie = float(superficie) #Rechequar esto
+        # Reemplazamos la coma por un punto para poder convertir a float sin problemas.
+        superficie = float(str(superficie).replace(',', '.'))
     except ValueError: 
-        print(f"ERROR: {superficie} datos inválidos, el campo ¨superficie¨ espera un entero")
+        print(f"ERROR: '{superficie}' es un dato inválido. El campo 'superficie' espera un número (entero o decimal).")
         return None
     linea_validada = {"nombre":pais,"poblacion":poblacion,"superficie":superficie,"continente":continente}
     return linea_validada
