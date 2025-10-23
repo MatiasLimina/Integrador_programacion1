@@ -3,8 +3,20 @@ import os
 import unicodedata
 
 NOMBRES_COLUMNAS = ["nombre", "poblacion", "superficie", "continente"]
+ENCABEZADOS = ["nombre", "poblacion", "superficie", "continente"]
 
-def leer_archivo(): 
+def inicializar_csv_si_no_existe():
+    """Verifica si el archivo CSV existe. Si no, lo crea con las cabeceras."""
+    if not os.path.exists(RUTA_ARCHIVO):
+        try:
+            with open(RUTA_ARCHIVO, 'w', encoding="UTF-8", newline='') as archivo:
+                escritor = csv.DictWriter(archivo, fieldnames=NOMBRES_COLUMNAS)
+                escritor.writeheader()
+            print(f"AVISO: No se encontró el archivo '{os.path.basename(RUTA_ARCHIVO)}'. Se ha creado uno nuevo y vacío.")
+        except IOError as e:
+            print(f"ERROR CRÍTICO: No se pudo crear el archivo CSV: {e}")
+
+def leer_archivo():
     try: 
         with open(RUTA_ARCHIVO,"r",encoding="UTF-8") as archivo:
             lector = csv.DictReader(archivo)

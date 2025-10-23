@@ -41,13 +41,16 @@ def main(): #Ejecuta el codigo principal
             input("\nPresione Enter para volver al menú principal...")
 
 
-paises = leer_archivo() # Guarda los países como lista
-if paises is None:
-    print("ERROR: No se pudo cargar el archivo de países. Asegúrese de que 'Paises.csv' existe en la misma carpeta y tiene el formato correcto.")
-    paises = []
+# --- INICIO DEL PROGRAMA ---
+
+# 1. Asegurarse de que el archivo CSV exista (si no, lo crea)
+inicializar_csv_si_no_existe()
+
+# 2. Cargar los datos del archivo
+paises = leer_archivo() # Guarda los países como lista de diccionarios
 
 if __name__ == "__main__":
-    if paises: # Solo ejecuta el main si la lista de países no está vacía
+    if paises is not None: # Solo ejecuta el main si la carga fue exitosa
         main()
     else:
-        print("El programa no puede continuar sin datos de países. Finalizando.")
+        print("El programa no puede continuar debido a un error de carga de datos. Finalizando.")
