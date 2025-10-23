@@ -22,8 +22,19 @@ def leer_archivo():
 def agregar_pais_al_csv(nuevo_pais):
     """Agrega un nuevo país (diccionario) al final del archivo CSV."""
     try:
+        # Verificamos si el archivo existe y no está vacío para chequear el último carácter.
+        needs_newline = False
+        if os.path.exists(RUTA_ARCHIVO) and os.path.getsize(RUTA_ARCHIVO) > 0:
+            with open(RUTA_ARCHIVO, 'r', encoding="UTF-8") as f:
+                f.seek(0, os.SEEK_END) # Ir al final del archivo
+                f.seek(f.tell() - 1, os.SEEK_SET) # Retroceder un carácter
+                if f.read(1) != '\n':
+                    needs_newline = True # El archivo no termina con un salto de línea
+
         # 'a' para append (agregar), newline='' para evitar líneas en blanco entre filas
         with open(RUTA_ARCHIVO, "a", encoding="UTF-8", newline='') as archivo:
+            if needs_newline:
+                archivo.write('\n') # Agregamos el salto de línea que faltaba
             # DictWriter necesita los nombres de las columnas para escribir correctamente
             escritor = csv.DictWriter(archivo, fieldnames=NOMBRES_COLUMNAS)
             escritor.writerow(nuevo_pais)
