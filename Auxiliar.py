@@ -9,3 +9,6 @@
 # os.path.join(script_dir, "Paises.csv")
 #Normas APA para el informe, se lo pasamos a gemini
 #Usar .md para el README
+#Fuentes
+#W3schools
+
