@@ -1,63 +1,141 @@
-# Integrador_programacion1
-
-Este es el módulo principal de un sistema de gestión de datos de países. Su objetivo es proporcionar una interfaz de **menú interactivo** para que el usuario pueda manipular una base de datos de países almacenada en formato **CSV**.
-
-El sistema permite realizar operaciones comunes como búsqueda, filtrado, ordenamiento, visualización de estadísticas, y la gestión de registros (agregar y editar países).
+# 🗺️ Administrador de Datos de Países 🌎
 
 ---
 
-## ⚙️ Requisitos y Estructura
+## 📝 Descripción del Programa
+
+Este programa en **Python** es una herramienta de administración que permite la gestión interactiva de una base de datos de países almacenada en un archivo **CSV**.
+
+El sistema carga los datos al inicio (asegurándose de que el archivo CSV exista) y ofrece un **menú principal** con diversas funcionalidades para manipular, consultar y analizar la información de los países.
+
+### ⚙️ Funcionalidades Principales
+
+* **Búsqueda:** Buscar países por nombre (coincidencia parcial o exacta).
+* **Filtrado:** Filtrar países por continente, rango de población o rango de superficie.
+* **Ordenamiento:** Ordenar la lista de países según un criterio seleccionado.
+* **Estadísticas:** Mostrar datos estadísticos sobre los países cargados.
+* **CRUD Básico:**
+    * Agregar un nuevo país a la base de datos.
+    * Editar la información de un país existente.
+
+El programa utiliza varios módulos (`Manejo_csv`, `Busqueda_por_nombre`, `Filtrado_paises`, `Ordenar_paises`, `Estadisticas`, `Sub_Menus`, `utilidades`) para mantener el código organizado y modular.
+
+---
+
+## 🚀 Instrucciones de Uso
 
 ### 1. Requisitos
-* **Python 3.10+** (Necesario para la estructura `match-case`).
-* Las librerías estándar de Python `csv` y `os`.
 
-### 2. Módulos del Sistema
-| Archivo | Propósito Principal |
-| :--- | :--- |
-| `main.py` | Controla el flujo del programa y el bucle del menú principal. |
-| `Manejo_csv.py` | Funciones para leer, inicializar y guardar el archivo CSV. |
-| `Busqueda_por_nombre.py` | Lógica para buscar países por coincidencia de nombre. |
-| `Filtrado_paises.py` | Lógica para filtrar por continente, población o superficie. |
-| `Ordenar_paises.py` | Lógica para ordenar la lista de países. |
-| `Estadisticas.py` | Funciones para el cálculo y la presentación de estadísticas. |
-| `Sub_Menus.py` | Maneja las interacciones del usuario en los submenús de cada funcionalidad. |
-| `utilidades.py` | Funciones auxiliares (ej. validación de entrada). |
-| `[Datos].csv` | Archivo donde se almacenan los datos de los países. |
+* Tener instalado **Python 3.x**.
+* Asegurarse de que todos los módulos (`Manejo_csv.py`, `Busqueda_por_nombre.py`, etc.) estén presentes en el mismo directorio que el archivo principal que contiene el código `main`.
 
----
+### 2. Ejecución
 
-## 🚀 Instalación y Ejecución
-
-1.  Asegúrese de que todos los archivos `.py` (incluyendo los módulos importados) y el archivo de datos CSV estén en el mismo directorio.
-2.  Ejecute el programa principal desde la terminal:
+1.  Guarda el código principal y todos los módulos en un mismo directorio.
+2.  Abre una terminal o símbolo del sistema.
+3.  Navega hasta el directorio donde guardaste los archivos.
+4.  Ejecuta el programa con el siguiente comando:
 
     ```bash
-    python main.py
+    python3 integrador.py 
+    # O simplemente:
+    python integrador.py
     ```
-    
-El programa iniciará automáticamente inicializando el CSV si no existe y cargando los datos.
+
+### 3. Interacción
+
+Una vez ejecutado, el programa mostrará el **Menú Principal**:
+
+--- MENU ---
+
+    Busqueda por nombre
+
+    Filtrar países
+
+    Ordenar países
+
+    Mostrar estadísticas
+
+    Agregar país
+
+    Editar país
+
+    Salir
+
+
+1.  **Ingresa el número** de la opción deseada y presiona **Enter**.
+2.  El programa te guiará a través de **submenús** o solicitará la entrada de datos (nombres, rangos, etc.) según la opción elegida.
+3.  Al finalizar una operación, presiona **Enter** para volver al Menú Principal.
+4.  Selecciona la opción **7) Salir** para finalizar el programa.
 
 ---
 
-## 🧭 Menú de Funcionalidades
+## 💻 Ejemplos de Entradas y Salidas
 
-Al ejecutar el programa, se presentará el siguiente menú:
+### 📌 Ejemplo de Menú Principal e Interacción
 
-| Opción | Descripción |
-| :---: | :--- |
-| **1** | **Búsqueda por nombre** (Coincidencia parcial o exacta) |
-| **2** | **Filtrar países** (Por continente, rango de población o rango de superficie) |
-| **3** | **Ordenar países** (Por diferentes campos) |
-| **4** | **Mostrar estadísticas** |
-| **5** | **Agregar país** (Crear un nuevo registro) |
-| **6** | **Editar país** (Modificar un registro existente) |
-| **7** | **Salir** |
+**Salida (Menú Principal):**
+
+--- MENU ---
+
+    Busqueda por nombre
+
+    Filtrar países
+
+    Ordenar países
+
+    Mostrar estadísticas
+
+    Agregar país
+
+    Editar país
+
+    Salir Ingrese su opción:
+
+
+**Entrada (Usuario selecciona la opción 2 - Filtrar países):**
+
+2
+
+
+**Salida (Submenú de Filtrado):**
+
+--- FILTRAR PAÍSES ---
+
+    Por continente
+
+    Por rango de población
+
+    Por rango de superficie
+
+    Volver Ingrese su opción:
+
+
+**Entrada (Usuario selecciona la opción 2 - Rango de Población):**
+
+2 Ingrese población mínima:
+
+
+**Entrada (Usuario ingresa los rangos):**
+
+10000000 Ingrese población máxima: 50000000
+
+
+**Salida (Resultado del Filtrado - Ejemplo):**
+
+Resultados del filtro de población [10000000 a 50000000]: | País | Continente | Población | Superficie (km²) | |---|---|---|---| | Colombia | América | 51000000 | 1141748 | | España | Europa | 47000000 | 505990 | ... Presione Enter para volver al menú principal...
+
 
 ---
 
-## 📝 Notas del Flujo Principal
+## 👥 Participación de los Integrantes
 
-El programa utiliza un bucle **`while not salir`** para mantener el menú activo. Cada opción llama a un módulo específico (a través de la función `sub_menu_...`) para gestionar la lógica de interacción, manteniendo el archivo `main.py` limpio y enfocado en la navegación.
-
-Si la carga inicial de datos (`paises = leer_archivo()`) falla, el programa mostrará un mensaje de error y terminará sin entrar al menú principal.
+| Rol/Módulo Principal | Integrante(s) |
+| :--- | :--- |
+| **Manejo_csv.py** (Inicialización, lectura, escritura) | [Limina Matias y Agüero Lautaro] |
+| **Busqueda_por_nombre.py** (Búsqueda) | [Limina Matias y Agüero Lautaro] |
+| **Filtrado_paises.py** (Filtros) | [Limina Matias y Agüero Lautaro] |
+| **Ordenar_paises.py** (Ordenamiento) | [Limina Matias y Agüero Lautaro] |
+| **Estadisticas.py** (Cálculos estadísticos) | [Limina Matias y Agüero Lautaro] |
+| **Sub_Menus.py y utilidades.py** (Manejo de menús y validaciones) | [Limina Matias y Agüero Lautaro] |
+| **Función main y estructura principal** | [Limina Matias y Agüero Lautaro] |
