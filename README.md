@@ -37,9 +37,9 @@ El programa utiliza varios módulos (`Manejo_csv`, `Busqueda_por_nombre`, `Filtr
 4.  Ejecuta el programa con el siguiente comando:
 
     ```bash
-    python3 nombre_del_archivo_principal.py 
+    python3 integrador.py 
     # O simplemente:
-    python nombre_del_archivo_principal.py
+    python integrador.py
     ```
 
 ### 3. Interacción
