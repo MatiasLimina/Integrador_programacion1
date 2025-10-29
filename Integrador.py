@@ -7,10 +7,6 @@ from Ordenar_paises import *
 from Estadisticas import *
 from Sub_Menus import *
 from utilidades import *
-#Por hacer
-#Revisar casos border(Agregar funcion recursiva que filtr en el directorio y me devuelva el archivo csv)
-
-
 #MAIN
 def main(paises): #Ejecuta el codigo principal
     salir = False
