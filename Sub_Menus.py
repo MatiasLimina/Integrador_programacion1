@@ -13,7 +13,7 @@ def sub_menu_ordenar_paises(dic_paises): #Muestra opciones y realiza el proceso 
     limpiar_pantalla()
     print("=====================")
     print("Como desea ordenar los paises?")
-    print("1) Nombre \n2)Población \n3)Superficie\n")
+    print("1) Nombre \n2) Población \n3) Superficie\n")
     opc = input("Elija una opción: ").strip()
     while not opc.isnumeric() or opc not in ["1", "2", "3"]: 
         print("Opción inválida. Por favor, elija 1, 2 o 3.")
