@@ -1,6 +1,6 @@
 nombre,poblacion,superficie,continente
 Alemania,83200000,357022.0,Europa
-Andorra,80000,468.0,Europa
+Andorra,80000,468.0,
 Angola,36000000,1246700.0,África
 Antigua y Barbuda,94000,442.0,América
 Arabia Saudita,36000000,2149690.0,Asia
@@ -14,7 +14,7 @@ Bangladés,172000000,147570.0,Asia
 Baréin,1500000,765.0,Asia
 Bélgica,11600000,30528.0,Europa
 Belice,450000,22966.0,América
-Benín,13700000,112622.0,África
+Benín,13700000,112622s.0,África
 Bhután,780000,38394.0,Asia
 Bielorrusia,9400000,207600.0,Europa
 Birmania,55000000,676578.0,Asia

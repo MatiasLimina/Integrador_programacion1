@@ -45,6 +45,8 @@ paises = leer_archivo() # Guarda los países como lista de diccionarios
 
 if __name__ == "__main__":
     if paises is not None: # Solo ejecuta el main si la carga fue exitosa
+        print("\n--- Carga de datos finalizada. ---")
+        input("Presione Enter para continuar al menú principal...")
         main(paises)
     else:
         print("El programa no puede continuar debido a un error de carga de datos. Finalizando.")
