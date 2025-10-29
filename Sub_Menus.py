@@ -12,7 +12,7 @@ from Agregar_Editar_paises import agregar_pais, editar_pais
 def sub_menu_ordenar_paises(dic_paises): #Muestra opciones y realiza el proceso de orden de paises
     limpiar_pantalla()
     print("=====================")
-    print("Como desea prdenar los paises?")
+    print("Como desea ordenar los paises?")
     print("1) Nombre \n2)Población \n3)Superficie\n")
     opc = input("Elija una opción: ").strip()
     while not opc.isnumeric() or opc not in ["1", "2", "3"]: 
