@@ -139,3 +139,7 @@ Resultados del filtro de población [10000000 a 50000000]: | País | Continente 
 | **Estadisticas.py** (Cálculos estadísticos) | [Limina Matias y Agüero Lautaro] |
 | **Sub_Menus.py y utilidades.py** (Manejo de menús y validaciones) | [Limina Matias y Agüero Lautaro] |
 | **Función main y estructura principal** | [Limina Matias y Agüero Lautaro] |
+
+
+## 👥 Link del video:
+https://youtu.be/fdZp1FXB2J4
