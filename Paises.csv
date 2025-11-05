@@ -1,6 +1,5 @@
 nombre,poblacion,superficie,continente
 Alemania,83200000,357022.0,Europa
-Andorra,80000,468.0,
 Angola,36000000,1246700.0,África
 Antigua y Barbuda,94000,442.0,América
 Arabia Saudita,36000000,2149690.0,Asia
@@ -14,7 +13,6 @@ Bangladés,172000000,147570.0,Asia
 Baréin,1500000,765.0,Asia
 Bélgica,11600000,30528.0,Europa
 Belice,450000,22966.0,América
-Benín,13700000,112622s.0,África
 Bhután,780000,38394.0,Asia
 Bielorrusia,9400000,207600.0,Europa
 Birmania,55000000,676578.0,Asia
@@ -65,7 +63,6 @@ Gabón,2400000,267668.0,África
 Gambia,2800000,11295.0,África
 Georgia,3700000,69700.0,Asia
 Ghana,34000000,238535.0,África
-Grecia,10400.000,131957.0,Europa
 Granada,130000,344.0,América
 Guatemala,18000000,108889.0,América
 Guinea,14000000,245857.0,África
@@ -100,9 +97,9 @@ Líbano,5400000,10452.0,Asia
 Liberia,5300000,111369.0,África
 Libia,7000000,1759540.0,África
 Liechtenstein,39000,160.0,Europa
-Lituania,,65300.0,Europa
 Luxemburgo,660000,2586.0,Europa
 Argentina,45376764,2780400.0,América
 Perú,34576665,1285216.0,América
 Madagascar,30000000,587000.0,África
 Groenlandia,14000,130000.2,America
+Polonia,1000,124.45676,America
